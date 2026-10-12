@@ -1,0 +1,1967 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#05060d" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="description" content="GUSTAVOEURO — Banconote Euro Grade AAA+ e trasferimenti PayPal anonimi. Dal dark web al tuo portafoglio, dal 2022." />
+<title>GUSTAVOEURO — DARK WEB ORIGIN · EST. 2022</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  if (window.tailwind) {
+    tailwind.config = { theme: { extend: { fontFamily: {
+      sans: ['Space Grotesk','system-ui','sans-serif'],
+      mono: ['JetBrains Mono','ui-monospace','monospace']
+    }}}};
+  }
+</script>
+<style>
+  /* ============ TOKENS ============ */
+  :root{
+    --bg:#05060d; --bg2:#070811; --fg:#eef0f8; --surface:#0b0d17; --surface2:#0e1120;
+    --line:#1d2130; --line2:#262b3d;
+    --au:#ffb020; --bl:#3d7bff; --tl:#14e0b0; --mg:#ff3d9a; --rs:#ff5c5c;
+    --hdr:64px;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
+  html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; background:var(--bg) }
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font-family:'Space Grotesk',system-ui,-apple-system,sans-serif;
+    font-size:15px; line-height:1.6;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    overflow-x:hidden; overscroll-behavior-y:none;
+  }
+  #root{ position:relative; z-index:1 }
+  ::selection{ background:rgba(255,176,32,.28) }
+  ::-webkit-scrollbar{ width:9px; height:9px }
+  ::-webkit-scrollbar-track{ background:#07080f }
+  ::-webkit-scrollbar-thumb{ background:#20243a; border-radius:6px }
+  ::-webkit-scrollbar-thumb:hover{ background:#2c3250 }
+  img{ max-width:100%; display:block }
+
+  /* ============ LIVELLI SFONDO (sempre z0, mai sopra) ============ */
+  .blob{ position:fixed; z-index:0; pointer-events:none; border-radius:50%; will-change:transform }
+  .blob-a{ width:70vmax; height:70vmax; left:-22vmax; top:-24vmax;
+    background:radial-gradient(circle at center, rgba(255,176,32,.22), rgba(255,176,32,0) 62%);
+    animation:fa 26s ease-in-out infinite }
+  .blob-b{ width:62vmax; height:62vmax; right:-24vmax; top:18vh;
+    background:radial-gradient(circle at center, rgba(61,123,255,.20), rgba(61,123,255,0) 62%);
+    animation:fb 32s ease-in-out infinite }
+  .blob-c{ width:58vmax; height:58vmax; left:14vw; bottom:-26vmax;
+    background:radial-gradient(circle at center, rgba(20,224,176,.15), rgba(20,224,176,0) 62%);
+    animation:fc 38s ease-in-out infinite }
+  @keyframes fa{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(4%,5%,0)}}
+  @keyframes fb{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(-5%,-4%,0)}}
+  @keyframes fc{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(5%,-5%,0)}}
+
+  .bgfx{ position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,.038) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.038) 1px, transparent 1px);
+    background-size:46px 46px;
+    -webkit-mask-image:radial-gradient(ellipse 85% 70% at 50% 0%, #000 12%, transparent 82%);
+            mask-image:radial-gradient(ellipse 85% 70% at 50% 0%, #000 12%, transparent 82%) }
+  .bgscan{ position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.05;
+    background:repeating-linear-gradient(180deg, #fff 0 1px, transparent 1px 3px) }
+
+  /* ============ SHELL ============ */
+  .shell{ position:relative; z-index:1; display:flex; flex-direction:column; min-height:100vh; min-height:100dvh }
+  .wrap{ width:100%; max-width:1180px; margin:0 auto; padding:0 16px }
+  @media(min-width:640px){ .wrap{ padding:0 24px } }
+  .sect{ padding:56px 0 }
+  @media(min-width:768px){ .sect{ padding:80px 0 } }
+
+  /* ============ CARD (OPACA: mai trasparenza sullo sfondo) ============ */
+  .card{ position:relative; background:var(--surface); border:1px solid var(--line);
+    border-radius:14px; overflow:hidden }
+  .card.soft{ background:var(--surface2) }
+  .card.flat{ background:#090b14 }
+  .card::after{ content:''; position:absolute; top:-1px; right:-1px; width:14px; height:14px;
+    border-top:1px solid var(--au); border-right:1px solid var(--au); opacity:.5;
+    border-top-right-radius:14px; pointer-events:none }
+  .card::before{ content:''; position:absolute; bottom:-1px; left:-1px; width:14px; height:14px;
+    border-bottom:1px solid var(--au); border-left:1px solid var(--au); opacity:.5;
+    border-bottom-left-radius:14px; pointer-events:none }
+  .pad{ padding:20px } @media(min-width:640px){ .pad{ padding:24px } }
+
+  .mono{ font-family:'JetBrains Mono',ui-monospace,monospace }
+  .eyebrow{ font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.22em;
+    text-transform:uppercase; color:rgba(238,240,248,.52) }
+  .tw{ letter-spacing:.13em }
+  .dim{ color:rgba(238,240,248,.60) }
+  .dim2{ color:rgba(238,240,248,.42) }
+
+  h1,h2,h3{ margin:0; line-height:1.15; letter-spacing:-.01em }
+  h1{ font-size:clamp(28px,6vw,50px); font-weight:700 }
+  h2{ font-size:clamp(20px,3.4vw,28px); font-weight:700 }
+  h3{ font-size:16px; font-weight:600 }
+  p{ margin:0 }
+
+  /* ============ BOTTONI (tap target >=44px) ============ */
+  .btn{ display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    min-height:44px; padding:11px 18px; border-radius:10px; font-weight:700; font-size:13.5px;
+    cursor:pointer; border:1px solid transparent; text-decoration:none;
+    transition:transform .16s ease, box-shadow .16s ease, border-color .16s ease, background .16s ease;
+    touch-action:manipulation; -webkit-user-select:none; user-select:none; white-space:nowrap }
+  .btn:active{ transform:scale(.975) }
+  .btn-gold{ background:linear-gradient(135deg,#ffc44d,#ff8a00); color:#140d02 }
+  .btn-gold:hover{ transform:translateY(-2px); box-shadow:0 10px 26px rgba(255,160,0,.26) }
+  .btn-gold:disabled{ opacity:.4; cursor:not-allowed; transform:none; box-shadow:none }
+  .btn-ghost{ background:#0d0f1b; color:var(--fg); border-color:var(--line2) }
+  .btn-ghost:hover{ border-color:rgba(255,176,32,.55); color:var(--au) }
+  .btn-ghost:disabled{ opacity:.35; cursor:not-allowed }
+  .btn-bl{ background:#101a33; color:#bcd0ff; border-color:#20325c }
+  .btn-bl:hover{ border-color:var(--bl) }
+  .btn-sm{ min-height:38px; padding:8px 13px; font-size:12.5px }
+  .btn-block{ width:100% }
+
+  .chip{ display:inline-flex; align-items:center; gap:6px; font-family:'JetBrains Mono',monospace;
+    font-size:10px; letter-spacing:.15em; text-transform:uppercase; padding:5px 9px;
+    border-radius:999px; border:1px solid var(--line2); background:#0a0c15; color:rgba(238,240,248,.62) }
+
+  /* ============ FORM ============ */
+  input,select,textarea{ width:100%; background:#07080f; border:1px solid var(--line2);
+    border-radius:10px; padding:12px 13px; color:var(--fg);
+    font-family:'JetBrains Mono',monospace; font-size:16px; line-height:1.4;
+    outline:none; transition:border-color .15s ease, box-shadow .15s ease;
+    appearance:none; -webkit-appearance:none; min-height:46px }
+  input:focus,select:focus,textarea:focus{ border-color:rgba(255,176,32,.65); box-shadow:0 0 0 3px rgba(255,176,32,.1) }
+  select{ background-image:linear-gradient(45deg,transparent 50%,rgba(238,240,248,.5) 50%),
+    linear-gradient(135deg,rgba(238,240,248,.5) 50%,transparent 50%);
+    background-position:calc(100% - 18px) 20px, calc(100% - 13px) 20px;
+    background-size:5px 5px, 5px 5px; background-repeat:no-repeat; padding-right:38px }
+  label{ display:block; font-family:'JetBrains Mono',monospace; font-size:10.5px;
+    letter-spacing:.15em; text-transform:uppercase; color:rgba(238,240,248,.5); margin-bottom:6px }
+
+  .link{ color:rgba(238,240,248,.62); text-decoration:none; transition:color .15s ease }
+  .link:hover{ color:var(--au) }
+
+  /* ============ HEADER ============ */
+  .hdr{ position:sticky; top:0; z-index:40; background:#06070e;
+    border-bottom:1px solid var(--line); padding-top:env(safe-area-inset-top) }
+  .hdr-in{ height:var(--hdr); display:flex; align-items:center; justify-content:space-between; gap:12px }
+  .logo{ display:flex; align-items:center; gap:9px; background:none; border:0; cursor:pointer; padding:0 }
+  .logo-dot{ width:9px; height:9px; border-radius:99px; background:var(--au); animation:pdot 1.9s ease-in-out infinite }
+  @keyframes pdot{ 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.35;transform:scale(.8)} }
+  .navlink{ background:none; border:0; cursor:pointer; font-size:13px; font-weight:500;
+    padding:8px 2px; color:rgba(238,240,248,.62); transition:color .15s ease; font-family:inherit }
+  .navlink:hover{ color:var(--fg) }
+  .navlink.on{ color:var(--au) }
+  .icon-btn{ min-width:44px; min-height:44px; display:inline-flex; align-items:center; justify-content:center;
+    gap:7px; background:#0d0f1b; border:1px solid var(--line2); border-radius:10px;
+    color:var(--fg); cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:12px; padding:0 12px }
+  .icon-btn:active{ transform:scale(.96) }
+  .hamb{ display:flex; flex-direction:column; gap:4px; width:18px }
+  .hamb i{ height:2px; background:currentColor; border-radius:2px; transition:transform .2s ease, opacity .2s ease }
+
+  /* menu mobile */
+  .mmenu{ position:fixed; inset:0; z-index:90; background:#06070e;
+    padding:calc(var(--hdr) + env(safe-area-inset-top) + 16px) 16px calc(24px + env(safe-area-inset-bottom));
+    overflow-y:auto; animation:fadeIn .22s ease both }
+  @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
+  .mmenu-item{ display:flex; align-items:center; justify-content:space-between; width:100%;
+    padding:16px 4px; border-bottom:1px solid var(--line); background:none; border-left:0;
+    border-right:0; border-top:0; color:var(--fg); font-size:16px; font-weight:600;
+    font-family:inherit; cursor:pointer; text-align:left }
+  .mmenu-item.on{ color:var(--au) }
+
+  /* ============ DRAWER CARRELLO ============ */
+  .scrim{ position:fixed; inset:0; z-index:60; background:rgba(2,3,8,.72);
+    opacity:0; pointer-events:none; transition:opacity .24s ease }
+  .scrim.on{ opacity:1; pointer-events:auto }
+  .drawer{ position:fixed; top:0; right:0; z-index:61; height:100%; height:100dvh;
+    width:min(430px,94vw); background:#080a13; border-left:1px solid var(--line);
+    display:flex; flex-direction:column; transform:translate3d(102%,0,0);
+    transition:transform .28s cubic-bezier(.22,.85,.3,1); will-change:transform;
+    padding-bottom:env(safe-area-inset-bottom) }
+  .drawer.on{ transform:translate3d(0,0,0) }
+
+  /* ============ MODAL ============ */
+  .modal-scrim{ position:fixed; inset:0; z-index:70; background:rgba(2,3,8,.82);
+    display:flex; align-items:center; justify-content:center; padding:14px; animation:fadeIn .18s ease both }
+  .modal{ background:var(--surface); border:1px solid var(--line2); border-radius:16px;
+    width:100%; max-height:88vh; max-height:88dvh; overflow-y:auto; animation:pop .22s cubic-bezier(.2,.9,.3,1) both }
+  @keyframes pop{ from{opacity:0; transform:translate3d(0,14px,0) scale(.98)} to{opacity:1;transform:none} }
+
+  /* ============ MARQUEE ============ */
+  .marquee{ overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent) }
+  .marquee-in{ display:inline-flex; gap:34px; padding-right:34px; white-space:nowrap;
+    animation:marq 40s linear infinite; will-change:transform }
+  @keyframes marq{ from{transform:translate3d(0,0,0)} to{transform:translate3d(-50%,0,0)} }
+
+  /* ============ TERMINALE ============ */
+  .term{ background:#06070e; border:1px solid var(--line); border-radius:12px; overflow:hidden }
+  .term-bar{ display:flex; align-items:center; gap:6px; padding:9px 12px;
+    border-bottom:1px solid var(--line); background:#0a0c15 }
+  .term-bar i{ width:9px; height:9px; border-radius:99px; background:#232840 }
+  .term-body{ padding:13px; font-family:'JetBrains Mono',monospace; font-size:11.5px; line-height:1.85;
+    max-height:230px; overflow:hidden }
+  .cursor{ display:inline-block; width:7px; height:13px; background:var(--au);
+    vertical-align:-2px; animation:blink 1s steps(1) infinite }
+  @keyframes blink{ 0%,49%{opacity:1} 50%,100%{opacity:0} }
+
+  /* ============ PROGRESS ============ */
+  .bar{ height:4px; background:#12141f; border-radius:99px; overflow:hidden }
+  .bar>i{ display:block; height:100%; background:linear-gradient(90deg,var(--au),#ff8a00);
+    transform-origin:left; transition:transform .12s linear }
+
+  /* ============ MEDIA BOX (fix Safari) ============ */
+  .mbox{ position:relative; overflow:hidden; border-radius:12px; background:#07080f; border:1px solid var(--line) }
+  .mbox>img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain }
+  .mzoom{ cursor:zoom-in }
+  .mzoom:active{ transform:scale(.99) }
+
+  /* ============ ACCORDION ============ */
+  .acc{ overflow:hidden; transition:max-height .3s ease, opacity .3s ease }
+
+  /* ============ FAB ============ */
+  .fab{ position:fixed; z-index:45; right:16px; bottom:calc(16px + env(safe-area-inset-bottom));
+    display:inline-flex; align-items:center; gap:8px; min-height:50px; padding:0 18px;
+    border-radius:999px; background:linear-gradient(135deg,#ffc44d,#ff8a00); color:#140d02;
+    font-weight:700; font-size:12.5px; font-family:'JetBrains Mono',monospace; text-decoration:none;
+    box-shadow:0 12px 30px rgba(255,150,0,.3); transition:transform .18s ease }
+  .fab:active{ transform:scale(.95) }
+
+  .fade{ animation:fadeUp .4s ease both }
+  @keyframes fadeUp{ from{opacity:0; transform:translate3d(0,10px,0)} to{opacity:1; transform:none} }
+
+  /* griglia responsiva */
+  .g2{ display:grid; gap:16px; grid-template-columns:1fr }
+  .g3{ display:grid; gap:16px; grid-template-columns:1fr }
+  @media(min-width:640px){ .g2{ grid-template-columns:1fr 1fr } .g3{ grid-template-columns:1fr 1fr } }
+  @media(min-width:1000px){ .g3{ grid-template-columns:repeat(3,1fr) } }
+
+  .row{ display:flex; flex-wrap:wrap; gap:10px; align-items:center }
+  .between{ display:flex; align-items:center; justify-content:space-between; gap:12px }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important }
+    html{ scroll-behavior:auto }
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script>window.React||document.write('<script crossorigin src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"><\/script>')</script>
+<script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script>window.ReactDOM||document.write('<script crossorigin src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"><\/script>')</script>
+<script src="https://unpkg.com/@babel/standalone@7.25.6/babel.min.js"></script>
+<script>window.Babel||document.write('<script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.25.6/babel.min.js"><\/script>')</script>
+
+<script type="text/babel" data-presets="react">
+const {useState,useEffect,useMemo,useCallback,createContext,useContext} = React;
+
+/* ================= OFUSCAMENTO CHIAVE ================= */
+const KEY=[71,85,83,84,65,86,79,69,85,82,79];
+const decodeKey=()=>String.fromCharCode.apply(null,KEY);
+
+/* ================= COSTANTI ================= */
+const TG      = "https://t.me/gustavoeuro";
+const TG_CHAN = "https://t.me/+gBf54xWnFapjMmRh";
+const PGP     = "7B3F 9A21 C4E8 5D06 1F77  8AC2 30B9 4E11";
+const ONION   = "gustavoeuro7x2k.onion";
+const FOUNDED = "2022";
+const QR = d => "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" + encodeURIComponent(d);
+
+const WALLETS = {
+  USDT:{label:"USDT · TRC-20", addr:"Rh2z4dzfHqE5Sd3DEV424ZWUE6XkCpNoPD7DgLiFCcV"},
+  BTC: {label:"BTC",           addr:"bc1qcjcf7kunlrla8qn6jwxg00hyjj6w8nnr67lk8v"},
+  LTC: {label:"LTC",           addr:"ltc1qpayxkexa48s6atp48quev2p2f8xnp79pa8zlkx"}
+};
+
+/* --- foto verificate --- */
+const IMG10 = "https://i.ibb.co/35LCKPHm/IMG-4951.jpg";
+const IMG20 = "https://i.ibb.co/9mwGD10w/IMG-4949.jpg";
+const IMG50 = "https://i.ibb.co/dwBt6Q78/IMG-4956.jpg";
+
+const GAL_10 = [
+  "https://i.ibb.co/35LCKPHm/IMG-4951.jpg",
+  "https://i.ibb.co/rKysvGxB/IMG-4954.gif",
+  "https://i.ibb.co/9mwGD10w/IMG-4949.jpg",
+  "https://i.ibb.co/6J066JyY/IMG-4953.gif"
+];
+const GAL_20 = [
+  "https://i.ibb.co/9mwGD10w/IMG-4949.jpg",
+  "https://i.ibb.co/rKysvGxB/IMG-4954.gif",
+  "https://i.ibb.co/35LCKPHm/IMG-4951.jpg",
+  "https://i.ibb.co/6J066JyY/IMG-4953.gif"
+];
+const GAL_50 = [
+  "https://i.ibb.co/dwBt6Q78/IMG-4956.jpg",
+  "https://i.ibb.co/vxQQwt6Y/IMG-4958.gif",
+  "https://i.ibb.co/xqvq97nX/IMG-4957.jpg",
+  "https://i.ibb.co/67ZKnsjB/IMG-4960.gif",
+  "https://i.ibb.co/Y74wt404/IMG-4959.gif"
+];
+const GAL_CARDS = [
+  "https://i.ibb.co/pvqFN8mr/IMG-5028.jpg",
+  "https://i.ibb.co/JRTZBd56/IMG-5029.jpg",
+  "https://i.ibb.co/PZnzsKRq/IMG-5031.jpg",
+  "https://i.ibb.co/szbQNB5/IMG-5032.jpg",
+  "https://i.ibb.co/3YdzSFN1/IMG-5033.jpg",
+  "https://i.ibb.co/rGQ6qV6g/IMG-5034.jpg"
+];
+
+/* --- listino --- */
+const PRODUCTS = [
+  {id:"p10a", den:"10", price:250,  pieces:25,  tier:"tier.p10a", img:IMG10, gallery:GAL_10},
+  {id:"p10b", den:"10", price:750,  pieces:75,  tier:"tier.p10b", img:IMG10, gallery:GAL_10},
+  {id:"p10c", den:"10", price:2000, pieces:200, tier:"tier.p10c", img:IMG10, gallery:GAL_10},
+  {id:"p20a", den:"20", price:500,  pieces:25,  tier:"tier.p1",   img:IMG20, gallery:GAL_20},
+  {id:"p20b", den:"20", price:1500, pieces:75,  tier:"tier.p2",   img:IMG20, gallery:GAL_20},
+  {id:"p20c", den:"20", price:4000, pieces:200, tier:"tier.p3",   img:IMG20, gallery:GAL_20},
+  {id:"p50a", den:"50", price:750,  pieces:15,  tier:"tier.p4",   img:IMG50, gallery:GAL_50},
+  {id:"p50b", den:"50", price:2500, pieces:50,  tier:"tier.p5",   img:IMG50, gallery:GAL_50},
+  {id:"p50c", den:"50", price:7500, pieces:150, tier:"tier.p6",   img:IMG50, gallery:GAL_50}
+];
+const FALLBACK_FOR = den => den==="50" ? IMG50 : den==="10" ? IMG10 : IMG20;
+
+const PACKAGES = [
+  {id:"b1", cost:120,  recv:250,  tier:"pkg.b1"},
+  {id:"b2", cost:200,  recv:450,  tier:"pkg.b2"},
+  {id:"b3", cost:300,  recv:700,  tier:"pkg.b3"},
+  {id:"b4", cost:450,  recv:1100, tier:"pkg.b4"},
+  {id:"b5", cost:700,  recv:1800, tier:"pkg.b5"},
+  {id:"b6", cost:1000, recv:2800, tier:"pkg.b6"}
+];
+
+const SPEC_KEYS = ["spec.fiber","spec.fiberP","spec.uv","spec.uvP","spec.qty","spec.tech","spec.scan","spec.warr"];
+const CARRIERS  = ["POSTE ITALIANE","BRT","GLS","DHL","LOCKER INPOST"];
+const PREFIXES  = ["+39","+34","+33","+44","+49","+41","+43","+351","+32","+31","+1"];
+const ASH = "╔═╗╦ ╦╔═╗╔╦╗╔═╗╦ ╦╔═╗╔═╗╦ ╦╦═╗╔═╗\n║ ╦║ ║╚═╗ ║ ╠═╣╚╦╝║╣ ║╣ ║ ║╠╦╝║ ║\n╚═╝╚═╝╚═╝ ╩ ╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╚═╝";
+
+/* ================= DIZIONARIO ================= */
+const DICT = {
+it:{
+ "nav.home":"Nodo","nav.cash":"Banconote","nav.paypal":"Trasferimenti","nav.quality":"Quality",
+ "nav.feedback":"Feedback","nav.faq":"FAQ","nav.track":"Tracking",
+ "hdr.menu":"Menu","hdr.online":"ONLINE","hdr.cart":"Carrello","hdr.close":"Chiudi",
+ "foot.rights":"Tutti i diritti riservati.","foot.legal":"Legale","foot.privacy":"Informativa Privacy",
+ "foot.terms":"Termini e Condizioni","foot.cookies":"Cookie Policy","foot.founded":"Portale nato nel dark web nel 2022","foot.contact":"Contatti",
+ "gate.kicker":"ACCESSO RISERVATO","gate.title":"INSERISCI LA CHIAVE","gate.sub":"Questo nodo è privato. Digita la parola chiave per aprire il portale.",
+ "gate.ph":"PAROLA CHIAVE","gate.btn":"SBLOCCA IL NODO","gate.err":"Chiave errata. Riprova.","gate.note":"Sessione valida fino alla chiusura del browser.",
+ "boot.ready":"NODO PRONTO","boot.tap":"premi per continuare",
+ "boot.lines":["AVVIO NUCLEO...","CARICAMENTO MODULI CRITTOGRAFICI","CIRCUITO TOR (3 HOPS)","VERIFICA PGP FINGERPRINT","TUNNEL TLS 1.3 STABILITO","SYNC LEDGER LOCALE","GATE DI ACCESSO ARMATO","ROUTING NODI SPECULARI","NODO PRONTO"],
+ "home.badge":"DARK WEB ORIGIN","home.est":"EST. 2022","home.online":"ONLINE",
+ "home.title":"DAL DARK WEB AL TUO PORTAFOGLIO.",
+ "home.p1":"GUSTAVOEURO nasce nel 2022 nelle pieghe più profonde della rete, dove i nodi non si fidano di nessuno e le transazioni viaggiano cifrate. Da allora selezioniamo banconote Euro Grade AAA+ e gestiamo trasferimenti PayPal in totale anonimato.",
+ "home.p2":"Abbiamo incassato più colpi: downtime, attacchi, infrastrutture cadute. Ogni volta siamo tornati online più solidi, più veloci, più silenziosi. Oggi il nodo è stabile e l'accesso resta su invito.",
+ "home.cta1":"APRI IL CATALOGO","home.cta2":"TRASFERIMENTI PAYPAL",
+ "home.sys":"TELEMETRIA NODO","home.log":"LOG DI SISTEMA","home.den":"TAGLI DISPONIBILI",
+ "home.statsTitle":"STATO DEL NODO","home.tlTitle":"CRONOLOGIA DI RESISTENZA","home.idxTitle":"INDICE OPERATIVO","home.protoTitle":"PROTOCOLLI ATTIVI",
+ "lbl.node":"NODE ID","lbl.session":"SESSION","lbl.uptime":"UPTIME","lbl.hash":"HASH","lbl.relay":"RELAY",
+ "cash.kicker":"MODULO 01 // BANCONOTE","cash.title":"RISERVA CONTANTI FISICI",
+ "cash.sub":"Accesso al listino Grade AAA+. Banconote in fibra di cotone 100%, superano test UV, penna e scanner bancario.",
+ "cash.open":"APRI IL CATALOGO","cash.close":"CHIUDI IL CATALOGO",
+ "cash.c10":"TAGLIO 10 EUR","cash.c20":"TAGLIO 20 EUR","cash.c50":"TAGLIO 50 EUR",
+ "cash.pieces":"pezzi","cash.specs":"SPECIFICHE","cash.verify":"VERIFICA QUALITÀ","cash.add":"AGGIUNGI",
+ "cash.tgTitle":"ORDINI BANCONOTE","cash.tgText":"Hai scelto il tuo lotto? Scrivici su Telegram con taglio e quantità: confermiamo disponibilità e spedizione in pochi minuti.",
+ "cash.tgBtn":"APRI TELEGRAM","cash.note":"Spedizione tracciata con POSTE ITALIANE, BRT, GLS, DHL o LOCKER INPOST.",
+ "paypal.kicker":"MODULO 02 // ROUTING P2P","paypal.title":"TRASFERIMENTI PAYPAL",
+ "paypal.sub":"Sistema di routing P2P con fondi puliti veicolati tramite exchange terzi. Ricevi direttamente sul tuo conto, in modalità Amici e Familiari.",
+ "paypal.cost":"INVII","paypal.recv":"RICEVI","paypal.add":"AGGIUNGI",
+ "paypal.s1":"LIQUIDITÀ GLOBALE","paypal.s2":"NODI ATTIVI","paypal.s3":"ENCRYPTION","paypal.s4":"DISPONIBILITÀ FONDI",
+ "quality.kicker":"GALLERIA VERIFICATA","quality.title":"QUALITY CHECK",
+ "quality.sub":"Guarda le foto reali di ogni servizio prima di procedere. Trasparenza totale, direttamente dalla fonte.",
+ "quality.pick":"SELEZIONA UN SERVIZIO","quality.cards":"CARTE","quality.cash":"BANCONOTE",
+ "quality.note":"Le immagini mostrano qualità e condizioni reali del materiale prima della spedizione.",
+ "inspect":["Controllo in controluce: filigrana e filo di sicurezza.","Inclinazione del numero: cambio colore corretto.","Tatto del rilievo: incisione percepibile al pollice.","Ologramma: reazione integra e allineata."],
+ "feedback.kicker":"REGISTRO RECENSIONI","feedback.title":"FEEDBACK DEGLI UTENTI",
+ "feedback.sub":"Recensioni raccolte dal canale pubblico. Verifica tu stesso, poi lascia la tua.",
+ "feedback.cta":"APRI IL CANALE FEEDBACK",
+ "faq.kicker":"SUPPORTO","faq.title":"DOMANDE FREQUENTI",
+ "track.kicker":"MODULO 03 // TRACCIAMENTO","track.title":"STATO ORDINE","track.ph":"CODICE ORDINE (GST-...)",
+ "track.btn":"CERCA","track.nf":"Nessun ordine trovato con questo codice.","track.status":"STATO","track.items":"ARTICOLI","track.empty":"Nessun ordine salvato su questo dispositivo.",
+ "co.step1":"DATI","co.step2":"VERIFICA","co.step3":"PAGAMENTO","co.step4":"CONFERMA",
+ "co.email":"EMAIL PAYPAL","co.email2":"CONFERMA EMAIL","co.emailErr":"Formato email non valido.","co.mismatch":"Le due email non coincidono.",
+ "co.next":"AVANTI","co.back":"INDIETRO","co.payTitle":"METODO DI PAGAMENTO",
+ "co.crypto":"CRYPTO · consigliato · 0% commissioni","co.sepa":"BONIFICO SEPA · +10% gestione","co.amazon":"BUONI AMAZON · +20% conversione",
+ "co.network":"Rete","co.address":"Indirizzo","co.amount":"Importo da inviare","co.countdown":"Scadenza pagamento",
+ "co.iban":"IBAN comunicato su Telegram","co.amazonPh":"Codice buono (15 cifre)",
+ "co.order":"IL TUO CODICE ORDINE","co.copy":"COPIA","co.copied":"COPIATO","co.done":"CONFERMA ORDINE",
+ "co.red.title":"PAGAMENTO NON ANDATO A BUON FINE?",
+ "co.red.text":"Contatta GUSTAVOEURO su Telegram, invia il codice ordine e completa l'ordine direttamente in chat.",
+ "co.empty":"Il carrello è vuoto.","co.summary":"RIEPILOGO ORDINE","co.reg":"ORDINE REGISTRATO",
+ "common.add":"Aggiungi","common.remove":"Rimuovi","common.empty":"Carrello vuoto","common.total":"Totale",
+ "common.close":"Chiudi","common.verify":"Verifica","common.qty":"Qtà","common.checkout":"CHECKOUT","common.copied":"Copiato",
+ "spec.fiber":"Fibra Cotone 100%","spec.fiberP":"Fibra Premium","spec.uv":"UV Completa","spec.uvP":"UV Perfetta",
+ "spec.qty":"Quantità","spec.tech":"Tecnologia Gen4 Elite","spec.scan":"Scanner 100% Pass","spec.warr":"Garanzia Totale",
+ "tier.p10a":"MICRO ENTRY","tier.p10b":"SCORTA BASE","tier.p10c":"VOLUME 10",
+ "tier.p1":"ENTRY LEVEL","tier.p2":"SCORTA OPERATIVA","tier.p3":"VOLUME INDUSTRIALE",
+ "tier.p4":"PACK STARTER 50","tier.p5":"BANK RESERVE","tier.p6":"POTERE DI SMERCIO ASSOLUTO",
+ "pkg.b1":"BASE","pkg.b2":"ADVANCED","pkg.b3":"VIP","pkg.b4":"PREMIUM","pkg.b5":"ELITE","pkg.b6":"MASTER",
+ "legal.privacy.title":"INFORMATIVA PRIVACY","legal.terms.title":"TERMINI E CONDIZIONI","legal.cookies.title":"COOKIE POLICY",
+ "stats":[["EST.","2022"],["CORRIERI","05"],["GRADO","AAA+"],["LINGUE","05"]],
+ "tl":[["2022","Nodo fondato nel dark web. Primo listino banconote."],["2023","Primo grande attacco. Nove giorni di downtime, poi ritorno online."],["2024","Attivato il routing PayPal via exchange terzi."],["2025","Ricostruzione completa dell'infrastruttura. Nuovi nodi speculari."],["2026","Nodo stabile, cinque lingue, accesso su invito."]],
+ "idx":[["Banconote","Lotti Euro Grade AAA+ selezionati"],["Trasferimenti","PayPal P2P con routing esterno"],["Quality","Ispezione visiva su foto reali"],["Feedback","Registro recensioni pubbliche"],["FAQ","Otto risposte lunghe e chiare"],["Tracking","Stato ordine via codice"]],
+ "proto":["PGP 4096","ONION v3","TLS 1.3","AES-256","SESSION LOCK","RS-4096"],
+ "rev":[["Marco_D","Ottimo, banconote perfette al controllo UV."],["Lena.K","Trasferimento arrivato in 12 minuti. Routing pulito."],["S. Bianchi","Terzo ordine. Sempre puntuali."],["Kovacs","Il sito è tornato più veloce di prima."],["A. Ruiz","Qualità superiore, imballaggio curato."],["Nightowl","Anonimato reale. Consigliato."]],
+ "faq":[
+  ["Come faccio a entrare nel portale?","Il nodo è privato. Serve la parola chiave, che viene distribuita ai contatti diretti. Una volta inserita, la sessione resta valida per tutta la durata della navigazione nella scheda: chiudendo il browser l'accesso scade e dovrai reinserirla."],
+  ["Le banconote superano i test?","Sì. Ogni lotto è selezionato per superare controllo UV, test con penna a iodio e lettura allo scanner. Il materiale è fibra di cotone 100%, con rilievi al tatto e ologramma corretto all'inclinazione."],
+  ["Cosa significa Grade AAA+?","È il nostro livello più alto di selezione. Indica esemplari con fibra premium, UV completa, stampa allineata e ologramma integro. Non vendiamo lotti di grado inferiore se non espressamente indicato."],
+  ["Come funzionano i trasferimenti PayPal?","Invii una somma e ne ricevi una maggiore. Il routing passa attraverso exchange terzi per spezzare il collegamento diretto tra il tuo account e quello di destinazione, riducendo la tracciabilità."],
+  ["Quali metodi di pagamento accettate?","Crypto (USDT TRC-20, BTC, LTC) con commissioni zero, bonifico SEPA con maggiorazione del 10% per la gestione, oppure buoni Amazon con conversione maggiorata del 20%."],
+  ["Quanto tempo richiede la spedizione?","La preparazione richiede 24-48 ore. La spedizione avviene con POSTE ITALIANE, BRT, GLS, DHL o LOCKER INPOST, sempre tracciata. I tempi dipendono dal corriere e dalla destinazione."],
+  ["Il mio ordine è andato storto, che faccio?","Apri Telegram e scrivi al contatto ufficiale allegando il codice ordine. Da lì completiamo o correggiamo la pratica in chat, senza passare da altri canali."],
+  ["Perché il sito è a volte offline?","Perché siamo nati sul dark web e subiamo attacchi ricorrenti. Quando succede, l'infrastruttura viene ricostruita e il nodo torna online più solido. È parte della nostra storia, non un difetto."]
+ ]
+},
+en:{
+ "nav.home":"Node","nav.cash":"Banknotes","nav.paypal":"Transfers","nav.quality":"Quality",
+ "nav.feedback":"Feedback","nav.faq":"FAQ","nav.track":"Tracking",
+ "hdr.menu":"Menu","hdr.online":"ONLINE","hdr.cart":"Cart","hdr.close":"Close",
+ "foot.rights":"All rights reserved.","foot.legal":"Legal","foot.privacy":"Privacy Policy",
+ "foot.terms":"Terms & Conditions","foot.cookies":"Cookie Policy","foot.founded":"Portal born on the dark web in 2022","foot.contact":"Contact",
+ "gate.kicker":"RESTRICTED ACCESS","gate.title":"ENTER THE KEY","gate.sub":"This node is private. Type the keyword to open the portal.",
+ "gate.ph":"KEYWORD","gate.btn":"UNLOCK NODE","gate.err":"Wrong key. Try again.","gate.note":"Session valid until the browser is closed.",
+ "boot.ready":"NODE READY","boot.tap":"tap to continue",
+ "boot.lines":["BOOTING CORE...","LOADING CRYPTO MODULES","TOR CIRCUIT (3 HOPS)","PGP FINGERPRINT MATCH","TLS 1.3 TUNNEL ESTABLISHED","LOCAL LEDGER SYNC","ACCESS GATE ARMED","MIRROR NODE ROUTING","NODE READY"],
+ "home.badge":"DARK WEB ORIGIN","home.est":"EST. 2022","home.online":"ONLINE",
+ "home.title":"FROM THE DARK WEB TO YOUR WALLET.",
+ "home.p1":"GUSTAVOEURO was born in 2022 in the deepest folds of the network, where nodes trust nobody and transactions travel encrypted. Since then we select Grade AAA+ Euro banknotes and handle PayPal transfers in full anonymity.",
+ "home.p2":"We took several hits: downtime, attacks, fallen infrastructure. Every time we came back online stronger, faster, quieter. Today the node is stable and access stays by invite.",
+ "home.cta1":"OPEN THE CATALOG","home.cta2":"PAYPAL TRANSFERS",
+ "home.sys":"NODE TELEMETRY","home.log":"SYSTEM LOG","home.den":"AVAILABLE DENOMINATIONS",
+ "home.statsTitle":"NODE STATUS","home.tlTitle":"RESISTANCE TIMELINE","home.idxTitle":"OPERATIVE INDEX","home.protoTitle":"ACTIVE PROTOCOLS",
+ "lbl.node":"NODE ID","lbl.session":"SESSION","lbl.uptime":"UPTIME","lbl.hash":"HASH","lbl.relay":"RELAY",
+ "cash.kicker":"MODULE 01 // BANKNOTES","cash.title":"PHYSICAL CASH RESERVE",
+ "cash.sub":"Grade AAA+ catalog access. 100% cotton fiber banknotes, passing UV, pen and bank scanner tests.",
+ "cash.open":"OPEN THE CATALOG","cash.close":"CLOSE THE CATALOG",
+ "cash.c10":"10 EUR DENOMINATION","cash.c20":"20 EUR DENOMINATION","cash.c50":"50 EUR DENOMINATION",
+ "cash.pieces":"pieces","cash.specs":"SPECS","cash.verify":"VERIFY QUALITY","cash.add":"ADD",
+ "cash.tgTitle":"BANKNOTE ORDERS","cash.tgText":"Picked your batch? Message us on Telegram with denomination and quantity: we confirm stock and shipping within minutes.",
+ "cash.tgBtn":"OPEN TELEGRAM","cash.note":"Tracked shipping via POSTE ITALIANE, BRT, GLS, DHL or LOCKER INPOST.",
+ "paypal.kicker":"MODULE 02 // P2P ROUTING","paypal.title":"PAYPAL TRANSFERS",
+ "paypal.sub":"P2P routing system with clean funds carried through third-party exchanges. You receive straight to your account, Friends & Family mode.",
+ "paypal.cost":"YOU SEND","paypal.recv":"YOU RECEIVE","paypal.add":"ADD",
+ "paypal.s1":"GLOBAL LIQUIDITY","paypal.s2":"ACTIVE NODES","paypal.s3":"ENCRYPTION","paypal.s4":"FUND AVAILABILITY",
+ "quality.kicker":"VERIFIED GALLERY","quality.title":"QUALITY CHECK",
+ "quality.sub":"Look at real photos of every service before proceeding. Total transparency, straight from the source.",
+ "quality.pick":"SELECT A SERVICE","quality.cards":"CARDS","quality.cash":"BANKNOTES",
+ "quality.note":"Images show real quality and condition of the material before shipping.",
+ "inspect":["Backlight check: watermark and security thread.","Tilt the number: correct colour shift.","Tactile relief: engraving felt under the thumb.","Hologram: intact and aligned reaction."],
+ "feedback.kicker":"REVIEW LEDGER","feedback.title":"USER FEEDBACK",
+ "feedback.sub":"Reviews collected from the public channel. Check for yourself, then leave yours.",
+ "feedback.cta":"OPEN FEEDBACK CHANNEL",
+ "faq.kicker":"SUPPORT","faq.title":"FREQUENT QUESTIONS",
+ "track.kicker":"MODULE 03 // TRACKING","track.title":"ORDER STATUS","track.ph":"ORDER CODE (GST-...)",
+ "track.btn":"SEARCH","track.nf":"No order found with this code.","track.status":"STATUS","track.items":"ITEMS","track.empty":"No orders saved on this device.",
+ "co.step1":"DATA","co.step2":"VERIFY","co.step3":"PAYMENT","co.step4":"CONFIRM",
+ "co.email":"PAYPAL EMAIL","co.email2":"CONFIRM EMAIL","co.emailErr":"Invalid email format.","co.mismatch":"The two emails do not match.",
+ "co.next":"NEXT","co.back":"BACK","co.payTitle":"PAYMENT METHOD",
+ "co.crypto":"CRYPTO · recommended · 0% fees","co.sepa":"SEPA TRANSFER · +10% handling","co.amazon":"AMAZON VOUCHERS · +20% conversion",
+ "co.network":"Network","co.address":"Address","co.amount":"Amount to send","co.countdown":"Payment deadline",
+ "co.iban":"IBAN shared on Telegram","co.amazonPh":"Voucher code (15 digits)",
+ "co.order":"YOUR ORDER CODE","co.copy":"COPY","co.copied":"COPIED","co.done":"CONFIRM ORDER",
+ "co.red.title":"PAYMENT DID NOT GO THROUGH?",
+ "co.red.text":"Contact GUSTAVOEURO on Telegram, send the order code and complete the order directly in chat.",
+ "co.empty":"Cart is empty.","co.summary":"ORDER SUMMARY","co.reg":"ORDER REGISTERED",
+ "common.add":"Add","common.remove":"Remove","common.empty":"Empty cart","common.total":"Total",
+ "common.close":"Close","common.verify":"Verify","common.qty":"Qty","common.checkout":"CHECKOUT","common.copied":"Copied",
+ "spec.fiber":"100% Cotton Fiber","spec.fiberP":"Premium Fiber","spec.uv":"Full UV","spec.uvP":"Perfect UV",
+ "spec.qty":"Quantity","spec.tech":"Gen4 Elite Technology","spec.scan":"Scanner 100% Pass","spec.warr":"Full Warranty",
+ "tier.p10a":"MICRO ENTRY","tier.p10b":"BASE STOCK","tier.p10c":"VOLUME 10",
+ "tier.p1":"ENTRY LEVEL","tier.p2":"OPERATIVE STOCK","tier.p3":"INDUSTRIAL VOLUME",
+ "tier.p4":"STARTER PACK 50","tier.p5":"BANK RESERVE","tier.p6":"ABSOLUTE FIREPOWER",
+ "pkg.b1":"BASE","pkg.b2":"ADVANCED","pkg.b3":"VIP","pkg.b4":"PREMIUM","pkg.b5":"ELITE","pkg.b6":"MASTER",
+ "legal.privacy.title":"PRIVACY POLICY","legal.terms.title":"TERMS & CONDITIONS","legal.cookies.title":"COOKIE POLICY",
+ "stats":[["EST.","2022"],["CARRIERS","05"],["GRADE","AAA+"],["LANGUAGES","05"]],
+ "tl":[["2022","Node founded on the dark web. First banknote list."],["2023","First major attack. Nine days downtime, then back online."],["2024","PayPal routing via third-party exchanges activated."],["2025","Full infrastructure rebuild. New mirror nodes."],["2026","Stable node, five languages, invite-only access."]],
+ "idx":[["Banknotes","Selected Grade AAA+ Euro batches"],["Transfers","PayPal P2P with external routing"],["Quality","Visual inspection on real photos"],["Feedback","Public review ledger"],["FAQ","Eight long, clear answers"],["Tracking","Order status by code"]],
+ "proto":["PGP 4096","ONION v3","TLS 1.3","AES-256","SESSION LOCK","RS-4096"],
+ "rev":[["Marco_D","Great, banknotes perfect under UV."],["Lena.K","Transfer arrived in 12 minutes. Clean routing."],["S. Bianchi","Third order. Always on time."],["Kovacs","Site came back faster than before."],["A. Ruiz","Superior quality, careful packaging."],["Nightowl","Real anonymity. Recommended."]],
+ "faq":[
+  ["How do I get in?","The node is private. You need the keyword, shared with direct contacts. Once entered, the session stays valid for the whole tab navigation: closing the browser expires access and you must re-enter it."],
+  ["Do the banknotes pass the tests?","Yes. Every batch is selected to pass UV control, iodine pen test and scanner reading. Material is 100% cotton fiber, with tactile relief and a hologram that reacts correctly to tilting."],
+  ["What does Grade AAA+ mean?","It is our highest selection tier. It marks specimens with premium fiber, full UV, aligned print and intact hologram. We do not sell lower grades unless explicitly stated."],
+  ["How do PayPal transfers work?","You send a sum and receive a bigger one. Routing goes through third-party exchanges to break the direct link between your account and the destination, reducing traceability."],
+  ["Which payment methods do you accept?","Crypto (USDT TRC-20, BTC, LTC) with zero fees, SEPA transfer with a 10% handling markup, or Amazon vouchers with a 20% conversion markup."],
+  ["How long does shipping take?","Preparation takes 24-48 hours. Shipping is via POSTE ITALIANE, BRT, GLS, DHL or LOCKER INPOST, always tracked. Timings depend on carrier and destination."],
+  ["My order went wrong, what now?","Open Telegram and message the official contact with your order code. From there we complete or fix the case in chat, with no other channels."],
+  ["Why is the site sometimes offline?","Because we were born on the dark web and take recurring attacks. When it happens, the infrastructure is rebuilt and the node returns stronger. It is part of our story, not a flaw."]
+ ]
+},
+es:{
+ "nav.home":"Nodo","nav.cash":"Billetes","nav.paypal":"Transferencias","nav.quality":"Quality",
+ "nav.feedback":"Feedback","nav.faq":"FAQ","nav.track":"Rastreo",
+ "hdr.menu":"Menú","hdr.online":"EN LÍNEA","hdr.cart":"Carrito","hdr.close":"Cerrar",
+ "foot.rights":"Todos los derechos reservados.","foot.legal":"Legal","foot.privacy":"Política de Privacidad",
+ "foot.terms":"Términos y Condiciones","foot.cookies":"Política de Cookies","foot.founded":"Portal nacido en la dark web en 2022","foot.contact":"Contacto",
+ "gate.kicker":"ACCESO RESTRINGIDO","gate.title":"INTRODUCE LA CLAVE","gate.sub":"Este nodo es privado. Escribe la palabra clave para abrir el portal.",
+ "gate.ph":"PALABRA CLAVE","gate.btn":"DESBLOQUEAR NODO","gate.err":"Clave incorrecta. Inténtalo de nuevo.","gate.note":"Sesión válida hasta cerrar el navegador.",
+ "boot.ready":"NODO LISTO","boot.tap":"toca para continuar",
+ "boot.lines":["INICIANDO NÚCLEO...","CARGANDO MÓDULOS CRIPTO","CIRCUITO TOR (3 HOPS)","VERIFICANDO HUELLA PGP","TÚNEL TLS 1.3 ESTABLECIDO","SYNC LEDGER LOCAL","GATE DE ACCESO ARMADO","ENRUTADO NODOS ESPEJO","NODO LISTO"],
+ "home.badge":"ORIGEN DARK WEB","home.est":"EST. 2022","home.online":"EN LÍNEA",
+ "home.title":"DE LA DARK WEB A TU CARTERA.",
+ "home.p1":"GUSTAVOEURO nace en 2022 en los pliegues más profundos de la red, donde los nodos no confían en nadie y las transacciones viajan cifradas. Desde entonces seleccionamos billetes de Euro Grado AAA+ y gestionamos transferencias PayPal con total anonimato.",
+ "home.p2":"Hemos encajado varios golpes: caídas, ataques, infraestructuras derribadas. Cada vez volvimos más sólidos, más rápidos, más silenciosos. Hoy el nodo es estable y el acceso sigue siendo por invitación.",
+ "home.cta1":"ABRIR EL CATÁLOGO","home.cta2":"TRANSFERENCIAS PAYPAL",
+ "home.sys":"TELEMETRÍA DEL NODO","home.log":"LOG DEL SISTEMA","home.den":"CORTES DISPONIBLES",
+ "home.statsTitle":"ESTADO DEL NODO","home.tlTitle":"CRONOLOGÍA DE RESISTENCIA","home.idxTitle":"ÍNDICE OPERATIVO","home.protoTitle":"PROTOCOLOS ACTIVOS",
+ "lbl.node":"NODE ID","lbl.session":"SESIÓN","lbl.uptime":"UPTIME","lbl.hash":"HASH","lbl.relay":"RELAY",
+ "cash.kicker":"MÓDULO 01 // BILLETES","cash.title":"RESERVA DE EFECTIVO FÍSICO",
+ "cash.sub":"Acceso al listado Grado AAA+. Billetes en fibra de algodón 100%, superan pruebas UV, bolígrafo y escáner bancario.",
+ "cash.open":"ABRIR EL CATÁLOGO","cash.close":"CERRAR EL CATÁLOGO",
+ "cash.c10":"CORTE 10 EUR","cash.c20":"CORTE 20 EUR","cash.c50":"CORTE 50 EUR",
+ "cash.pieces":"piezas","cash.specs":"ESPECIFICACIONES","cash.verify":"VERIFICAR CALIDAD","cash.add":"AÑADIR",
+ "cash.tgTitle":"PEDIDOS DE BILLETES","cash.tgText":"¿Elegiste tu lote? Escríbenos por Telegram con corte y cantidad: confirmamos stock y envío en minutos.",
+ "cash.tgBtn":"ABRIR TELEGRAM","cash.note":"Envío con seguimiento vía POSTE ITALIANE, BRT, GLS, DHL o LOCKER INPOST.",
+ "paypal.kicker":"MÓDULO 02 // ENRUTADO P2P","paypal.title":"TRANSFERENCIAS PAYPAL",
+ "paypal.sub":"Sistema de enrutado P2P con fondos limpios canalizados por exchanges terceros. Recibes directamente en tu cuenta, modo Amigos y Familiares.",
+ "paypal.cost":"ENVÍAS","paypal.recv":"RECIBES","paypal.add":"AÑADIR",
+ "paypal.s1":"LIQUIDEZ GLOBAL","paypal.s2":"NODOS ACTIVOS","paypal.s3":"ENCRYPTION","paypal.s4":"DISPONIBILIDAD",
+ "quality.kicker":"GALERÍA VERIFICADA","quality.title":"QUALITY CHECK",
+ "quality.sub":"Mira fotos reales de cada servicio antes de proceder. Transparencia total, directamente desde la fuente.",
+ "quality.pick":"SELECCIONA UN SERVICIO","quality.cards":"TARJETAS","quality.cash":"BILLETES",
+ "quality.note":"Las imágenes muestran calidad y condiciones reales del material antes del envío.",
+ "inspect":["Control a contraluz: marca de agua e hilo de seguridad.","Inclinación del número: cambio de color correcto.","Tacto del relieve: grabado perceptible con el pulgar.","Holograma: reacción íntegra y alineada."],
+ "feedback.kicker":"REGISTRO DE RESEÑAS","feedback.title":"FEEDBACK DE USUARIOS",
+ "feedback.sub":"Reseñas recogidas del canal público. Compruébalo tú mismo y luego deja la tuya.",
+ "feedback.cta":"ABRIR CANAL DE FEEDBACK",
+ "faq.kicker":"SOPORTE","faq.title":"PREGUNTAS FRECUENTES",
+ "track.kicker":"MÓDULO 03 // RASTREO","track.title":"ESTADO DEL PEDIDO","track.ph":"CÓDIGO DE PEDIDO (GST-...)",
+ "track.btn":"BUSCAR","track.nf":"No se encontró ningún pedido con este código.","track.status":"ESTADO","track.items":"ARTÍCULOS","track.empty":"Ningún pedido guardado en este dispositivo.",
+ "co.step1":"DATOS","co.step2":"VERIFICACIÓN","co.step3":"PAGO","co.step4":"CONFIRMACIÓN",
+ "co.email":"EMAIL PAYPAL","co.email2":"CONFIRMAR EMAIL","co.emailErr":"Formato de email no válido.","co.mismatch":"Los dos emails no coinciden.",
+ "co.next":"SIGUIENTE","co.back":"ATRÁS","co.payTitle":"MÉTODO DE PAGO",
+ "co.crypto":"CRIPTO · recomendado · 0% comisiones","co.sepa":"TRANSFERENCIA SEPA · +10% gestión","co.amazon":"VALES AMAZON · +20% conversión",
+ "co.network":"Red","co.address":"Dirección","co.amount":"Importe a enviar","co.countdown":"Plazo de pago",
+ "co.iban":"IBAN comunicado por Telegram","co.amazonPh":"Código de vale (15 dígitos)",
+ "co.order":"TU CÓDIGO DE PEDIDO","co.copy":"COPIAR","co.copied":"COPIADO","co.done":"CONFIRMAR PEDIDO",
+ "co.red.title":"¿EL PAGO NO SALIÓ BIEN?",
+ "co.red.text":"Contacta con GUSTAVOEURO por Telegram, envía el código de pedido y completa el pedido directamente en el chat.",
+ "co.empty":"El carrito está vacío.","co.summary":"RESUMEN DEL PEDIDO","co.reg":"PEDIDO REGISTRADO",
+ "common.add":"Añadir","common.remove":"Quitar","common.empty":"Carrito vacío","common.total":"Total",
+ "common.close":"Cerrar","common.verify":"Verificar","common.qty":"Cant.","common.checkout":"CHECKOUT","common.copied":"Copiado",
+ "spec.fiber":"Fibra de Algodón 100%","spec.fiberP":"Fibra Premium","spec.uv":"UV Completa","spec.uvP":"UV Perfecta",
+ "spec.qty":"Cantidad","spec.tech":"Tecnología Gen4 Elite","spec.scan":"Escáner 100% Pass","spec.warr":"Garantía Total",
+ "tier.p10a":"MICRO ENTRADA","tier.p10b":"STOCK BASE","tier.p10c":"VOLUMEN 10",
+ "tier.p1":"NIVEL ENTRADA","tier.p2":"STOCK OPERATIVO","tier.p3":"VOLUMEN INDUSTRIAL",
+ "tier.p4":"PACK INICIAL 50","tier.p5":"RESERVA BANCARIA","tier.p6":"POTENCIA ABSOLUTA",
+ "pkg.b1":"BASE","pkg.b2":"ADVANCED","pkg.b3":"VIP","pkg.b4":"PREMIUM","pkg.b5":"ELITE","pkg.b6":"MASTER",
+ "legal.privacy.title":"POLÍTICA DE PRIVACIDAD","legal.terms.title":"TÉRMINOS Y CONDICIONES","legal.cookies.title":"POLÍTICA DE COOKIES",
+ "stats":[["EST.","2022"],["MENSAJERÍAS","05"],["GRADO","AAA+"],["IDIOMAS","05"]],
+ "tl":[["2022","Nodo fundado en la dark web. Primera lista de billetes."],["2023","Primer gran ataque. Nueve días de caída y regreso online."],["2024","Activado el enrutado PayPal vía exchanges terceros."],["2025","Reconstrucción total de la infraestructura. Nuevos nodos espejo."],["2026","Nodo estable, cinco idiomas, acceso por invitación."]],
+ "idx":[["Billetes","Lotes Euro Grado AAA+ seleccionados"],["Transferencias","PayPal P2P con enrutado externo"],["Quality","Inspección visual sobre fotos reales"],["Feedback","Registro público de reseñas"],["FAQ","Ocho respuestas largas y claras"],["Rastreo","Estado del pedido por código"]],
+ "proto":["PGP 4096","ONION v3","TLS 1.3","AES-256","BLOQUEO SESIÓN","RS-4096"],
+ "rev":[["Marco_D","Excelente, billetes perfectos bajo UV."],["Lena.K","Transferencia en 12 minutos. Enrutado limpio."],["S. Bianchi","Tercer pedido. Siempre puntuales."],["Kovacs","La web volvió más rápida que antes."],["A. Ruiz","Calidad superior, embalaje cuidado."],["Nightowl","Anonimato real. Recomendado."]],
+ "faq":[
+  ["¿Cómo entro en el portal?","El nodo es privado. Hace falta la palabra clave, distribuida a contactos directos. Una vez introducida, la sesión se mantiene durante toda la navegación en la pestaña: al cerrar el navegador caduca y hay que reinsertarla."],
+  ["¿Los billetes pasan las pruebas?","Sí. Cada lote se selecciona para superar control UV, prueba de bolígrafo de yodo y lectura de escáner. El material es fibra de algodón 100%, con relieve al tacto y holograma correcto al inclinar."],
+  ["¿Qué significa Grado AAA+?","Es nuestro nivel más alto de selección. Indica ejemplares con fibra premium, UV completa, impresión alineada y holograma íntegro. No vendemos grados inferiores salvo indicación expresa."],
+  ["¿Cómo funcionan las transferencias PayPal?","Envías una suma y recibes una mayor. El enrutado pasa por exchanges terceros para romper el vínculo directo entre tu cuenta y la de destino, reduciendo la trazabilidad."],
+  ["¿Qué métodos de pago aceptáis?","Cripto (USDT TRC-20, BTC, LTC) con cero comisiones, transferencia SEPA con un 10% de gestión, o vales Amazon con un 20% de conversión."],
+  ["¿Cuánto tarda el envío?","La preparación requiere 24-48 horas. El envío es vía POSTE ITALIANE, BRT, GLS, DHL o LOCKER INPOST, siempre con seguimiento. Los tiempos dependen del transportista y del destino."],
+  ["Mi pedido salió mal, ¿qué hago?","Abre Telegram y escribe al contacto oficial adjuntando el código de pedido. Desde ahí completamos o corregimos el caso en el chat, sin otros canales."],
+  ["¿Por qué la web está a veces offline?","Porque nacimos en la dark web y sufrimos ataques recurrentes. Cuando ocurre, se reconstruye la infraestructura y el nodo vuelve más sólido. Es parte de nuestra historia, no un defecto."]
+ ]
+},
+de:{
+ "nav.home":"Knoten","nav.cash":"Banknoten","nav.paypal":"Transfers","nav.quality":"Quality",
+ "nav.feedback":"Feedback","nav.faq":"FAQ","nav.track":"Tracking",
+ "hdr.menu":"Menü","hdr.online":"ONLINE","hdr.cart":"Warenkorb","hdr.close":"Schließen",
+ "foot.rights":"Alle Rechte vorbehalten.","foot.legal":"Rechtliches","foot.privacy":"Datenschutz",
+ "foot.terms":"AGB","foot.cookies":"Cookie-Richtlinie","foot.founded":"Portal 2022 im Darknet entstanden","foot.contact":"Kontakt",
+ "gate.kicker":"ZUGANG BESCHRÄNKT","gate.title":"SCHLÜSSEL EINGEBEN","gate.sub":"Dieser Knoten ist privat. Gib das Kennwort ein, um das Portal zu öffnen.",
+ "gate.ph":"KENNWORT","gate.btn":"KNOTEN ENTSPERREN","gate.err":"Falscher Schlüssel. Erneut versuchen.","gate.note":"Session gültig bis zum Schließen des Browsers.",
+ "boot.ready":"KNOTEN BEREIT","boot.tap":"zum Fortfahren tippen",
+ "boot.lines":["KERN WIRD GESTARTET...","KRYPTO-MODULE LADEN","TOR-SCHALTKREIS (3 HOPS)","PGP-FINGERPRINT-ABGLEICH","TLS 1.3 TUNNEL STEHT","LOKALER LEDGER-SYNC","ZUGANGSGATE AKTIV","SPIEGELKNOTEN-ROUTING","KNOTEN BEREIT"],
+ "home.badge":"DARKNET-ORIGIN","home.est":"EST. 2022","home.online":"ONLINE",
+ "home.title":"VOM DARKNET IN DEINE GELDBÖRSE.",
+ "home.p1":"GUSTAVOEURO entstand 2022 in den tiefsten Falten des Netzes, wo Knoten niemandem trauen und Transaktionen verschlüsselt reisen. Seitdem wählen wir Euro-Banknoten der Güte AAA+ aus und wickeln PayPal-Transfers in völliger Anonymität ab.",
+ "home.p2":"Wir haben mehrere Treffer eingesteckt: Ausfälle, Angriffe, gefallene Infrastruktur. Jedes Mal kamen wir stärker, schneller und leiser zurück. Heute ist der Knoten stabil und der Zugang bleibt auf Einladung.",
+ "home.cta1":"KATALOG ÖFFNEN","home.cta2":"PAYPAL-TRANSFERS",
+ "home.sys":"KNOTEN-TELEMETRIE","home.log":"SYSTEMLOG","home.den":"VERFÜGBARE NENNWERTE",
+ "home.statsTitle":"KNOTEN-STATUS","home.tlTitle":"CHRONIK DES WIDERSTANDS","home.idxTitle":"OPERATIVER INDEX","home.protoTitle":"AKTIVE PROTOKOLLE",
+ "lbl.node":"NODE ID","lbl.session":"SESSION","lbl.uptime":"UPTIME","lbl.hash":"HASH","lbl.relay":"RELAY",
+ "cash.kicker":"MODUL 01 // BANKNOTEN","cash.title":"PHYSISCHE BARGELDRESERVE",
+ "cash.sub":"Zugang zur Güte-AAA+-Liste. Banknoten aus 100% Baumwollfaser, bestehen UV-, Stift- und Bankscanner-Tests.",
+ "cash.open":"KATALOG ÖFFNEN","cash.close":"KATALOG SCHLIESSEN",
+ "cash.c10":"NENNWERT 10 EUR","cash.c20":"NENNWERT 20 EUR","cash.c50":"NENNWERT 50 EUR",
+ "cash.pieces":"Stück","cash.specs":"SPEZIFIKATIONEN","cash.verify":"QUALITÄT PRÜFEN","cash.add":"HINZUFÜGEN",
+ "cash.tgTitle":"BANKNOTEN-BESTELLUNGEN","cash.tgText":"Charge gewählt? Schreib uns auf Telegram mit Nennwert und Menge: Wir bestätigen Bestand und Versand in Minuten.",
+ "cash.tgBtn":"TELEGRAM ÖFFNEN","cash.note":"Verfolgter Versand über POSTE ITALIANE, BRT, GLS, DHL oder LOCKER INPOST.",
+ "paypal.kicker":"MODUL 02 // P2P-ROUTING","paypal.title":"PAYPAL-TRANSFERS",
+ "paypal.sub":"P2P-Routingsystem mit sauberen Mitteln über Drittanbieter-Börsen. Du erhältst direkt auf dein Konto, im Friends-and-Family-Modus.",
+ "paypal.cost":"DU SENDEST","paypal.recv":"DU ERHÄLTST","paypal.add":"HINZUFÜGEN",
+ "paypal.s1":"GLOBALE LIQUIDITÄT","paypal.s2":"AKTIVE KNOTEN","paypal.s3":"ENCRYPTION","paypal.s4":"MITTELVERFÜGBARKEIT",
+ "quality.kicker":"VERIFIZIERTE GALERIE","quality.title":"QUALITY CHECK",
+ "quality.sub":"Sieh dir echte Fotos jedes Dienstes an, bevor du fortfährst. Totale Transparenz, direkt aus der Quelle.",
+ "quality.pick":"DIENST WÄHLEN","quality.cards":"KARTEN","quality.cash":"BANKNOTEN",
+ "quality.note":"Die Bilder zeigen echte Qualität und Zustand des Materials vor dem Versand.",
+ "inspect":["Gegenlichtprüfung: Wasserzeichen und Sicherheitsfaden.","Zahl kippen: korrekter Farbwechsel.","Tastrelief: Gravur unter dem Daumen spürbar.","Hologramm: intakte und ausgerichtete Reaktion."],
+ "feedback.kicker":"BEWERTUNGSREGISTER","feedback.title":"NUTZER-FEEDBACK",
+ "feedback.sub":"Bewertungen aus dem öffentlichen Kanal. Prüfe selbst und hinterlasse dann deine.",
+ "feedback.cta":"FEEDBACK-KANAL ÖFFNEN",
+ "faq.kicker":"SUPPORT","faq.title":"HÄUFIGE FRAGEN",
+ "track.kicker":"MODUL 03 // TRACKING","track.title":"BESTELLSTATUS","track.ph":"BESTELLCODE (GST-...)",
+ "track.btn":"SUCHEN","track.nf":"Keine Bestellung mit diesem Code gefunden.","track.status":"STATUS","track.items":"ARTIKEL","track.empty":"Keine Bestellungen auf diesem Gerät gespeichert.",
+ "co.step1":"DATEN","co.step2":"PRÜFUNG","co.step3":"ZAHLUNG","co.step4":"BESTÄTIGUNG",
+ "co.email":"PAYPAL-E-MAIL","co.email2":"E-MAIL BESTÄTIGEN","co.emailErr":"Ungültiges E-Mail-Format.","co.mismatch":"Die beiden E-Mails stimmen nicht überein.",
+ "co.next":"WEITER","co.back":"ZURÜCK","co.payTitle":"ZAHLUNGSMETHODE",
+ "co.crypto":"KRYPTO · empfohlen · 0% Gebühren","co.sepa":"SEPA-ÜBERWEISUNG · +10% Bearbeitung","co.amazon":"AMAZON-GUTSCHEINE · +20% Umrechnung",
+ "co.network":"Netzwerk","co.address":"Adresse","co.amount":"Zu sendender Betrag","co.countdown":"Zahlungsfrist",
+ "co.iban":"IBAN über Telegram mitgeteilt","co.amazonPh":"Gutscheincode (15 Ziffern)",
+ "co.order":"DEIN BESTELLCODE","co.copy":"KOPIEREN","co.copied":"KOPIERT","co.done":"BESTELLUNG BESTÄTIGEN",
+ "co.red.title":"ZAHLUNG NICHT DURCHGEGANGEN?",
+ "co.red.text":"Kontaktiere GUSTAVOEURO auf Telegram, sende den Bestellcode und schließe die Bestellung direkt im Chat ab.",
+ "co.empty":"Der Warenkorb ist leer.","co.summary":"BESTELLÜBERSICHT","co.reg":"BESTELLUNG REGISTRIERT",
+ "common.add":"Hinzufügen","common.remove":"Entfernen","common.empty":"Leerer Warenkorb","common.total":"Gesamt",
+ "common.close":"Schließen","common.verify":"Prüfen","common.qty":"Menge","common.checkout":"CHECKOUT","common.copied":"Kopiert",
+ "spec.fiber":"100% Baumwollfaser","spec.fiberP":"Premium-Faser","spec.uv":"Vollständige UV","spec.uvP":"Perfekte UV",
+ "spec.qty":"Menge","spec.tech":"Gen4-Elite-Technologie","spec.scan":"Scanner 100% Pass","spec.warr":"Volle Garantie",
+ "tier.p10a":"MICRO EINSTIEG","tier.p10b":"BASISBESTAND","tier.p10c":"VOLUMEN 10",
+ "tier.p1":"EINSTIEGSNIVEAU","tier.p2":"OPERATIVER BESTAND","tier.p3":"INDUSTRIEVOLUMEN",
+ "tier.p4":"STARTER-PAKET 50","tier.p5":"BANKRESERVE","tier.p6":"ABSOLUTE SCHLAGKRAFT",
+ "pkg.b1":"BASE","pkg.b2":"ADVANCED","pkg.b3":"VIP","pkg.b4":"PREMIUM","pkg.b5":"ELITE","pkg.b6":"MASTER",
+ "legal.privacy.title":"DATENSCHUTZ","legal.terms.title":"AGB","legal.cookies.title":"COOKIE-RICHTLINIE",
+ "stats":[["EST.","2022"],["KURIERE","05"],["GÜTE","AAA+"],["SPRACHEN","05"]],
+ "tl":[["2022","Knoten im Darknet gegründet. Erste Banknoten-Liste."],["2023","Erster großer Angriff. Neun Tage Ausfall, dann zurück online."],["2024","PayPal-Routing über Drittanbieter-Börsen aktiviert."],["2025","Vollständiger Infrastruktur-Neubau. Neue Spiegelknoten."],["2026","Stabiler Knoten, fünf Sprachen, Zugang auf Einladung."]],
+ "idx":[["Banknoten","Ausgewählte Euro-Chargen Güte AAA+"],["Transfers","PayPal P2P mit externem Routing"],["Quality","Sichtprüfung an echten Fotos"],["Feedback","Öffentliches Bewertungsregister"],["FAQ","Acht lange, klare Antworten"],["Tracking","Bestellstatus per Code"]],
+ "proto":["PGP 4096","ONION v3","TLS 1.3","AES-256","SESSION-SPERRE","RS-4096"],
+ "rev":[["Marco_D","Top, Banknoten perfekt unter UV."],["Lena.K","Transfer in 12 Minuten da. Sauberes Routing."],["S. Bianchi","Dritte Bestellung. Immer pünktlich."],["Kovacs","Die Seite kam schneller zurück als vorher."],["A. Ruiz","Überragende Qualität, sorgfältige Verpackung."],["Nightowl","Echte Anonymität. Empfohlen."]],
+ "faq":[
+  ["Wie komme ich hinein?","Der Knoten ist privat. Man braucht das Kennwort, das an direkte Kontakte verteilt wird. Einmal eingegeben, bleibt die Session für die gesamte Navigation im Tab gültig: Beim Schließen des Browsers läuft sie ab."],
+  ["Bestehen die Banknoten die Tests?","Ja. Jede Charge wird so ausgewählt, dass sie UV-Kontrolle, Iodstift-Test und Scannerlesung besteht. Das Material ist 100% Baumwollfaser, mit spürbarem Relief und korrektem Hologramm beim Kippen."],
+  ["Was bedeutet Güte AAA+?","Das ist unsere höchste Auswahlstufe. Sie kennzeichnet Stücke mit Premium-Faser, vollständiger UV, ausgerichtetem Druck und intaktem Hologramm. Geringere Güten verkaufen wir nur bei ausdrücklicher Angabe."],
+  ["Wie funktionieren PayPal-Transfers?","Du sendest eine Summe und erhältst eine höhere. Das Routing läuft über Drittanbieter-Börsen, um die direkte Verbindung zwischen deinem Konto und dem Ziel zu brechen und die Nachverfolgbarkeit zu senken."],
+  ["Welche Zahlungsmethoden akzeptiert ihr?","Krypto (USDT TRC-20, BTC, LTC) ohne Gebühren, SEPA-Überweisung mit 10% Bearbeitungsaufschlag oder Amazon-Gutscheine mit 20% Umrechnungsaufschlag."],
+  ["Wie lange dauert der Versand?","Die Vorbereitung dauert 24-48 Stunden. Versand über POSTE ITALIANE, BRT, GLS, DHL oder LOCKER INPOST, immer verfolgt. Die Zeiten hängen von Kurier und Ziel ab."],
+  ["Meine Bestellung ist schiefgelaufen, was nun?","Öffne Telegram und schreibe dem offiziellen Kontakt mit dem Bestellcode. Von dort aus schließen oder korrigieren wir den Fall im Chat, ohne andere Kanäle."],
+  ["Warum ist die Seite manchmal offline?","Weil wir im Darknet geboren wurden und wiederkehrende Angriffe erleben. Wenn es passiert, wird die Infrastruktur neu aufgebaut und der Knoten kehrt stärker zurück. Das gehört zu unserer Geschichte, kein Fehler."]
+ ]
+},
+fr:{
+ "nav.home":"Nœud","nav.cash":"Billets","nav.paypal":"Transferts","nav.quality":"Quality",
+ "nav.feedback":"Avis","nav.faq":"FAQ","nav.track":"Suivi",
+ "hdr.menu":"Menu","hdr.online":"EN LIGNE","hdr.cart":"Panier","hdr.close":"Fermer",
+ "foot.rights":"Tous droits réservés.","foot.legal":"Légal","foot.privacy":"Politique de Confidentialité",
+ "foot.terms":"Conditions Générales","foot.cookies":"Politique Cookies","foot.founded":"Portail né sur le dark web en 2022","foot.contact":"Contact",
+ "gate.kicker":"ACCÈS RESTREINT","gate.title":"ENTREZ LA CLÉ","gate.sub":"Ce nœud est privé. Saisissez le mot-clé pour ouvrir le portail.",
+ "gate.ph":"MOT-CLÉ","gate.btn":"DÉVERROUILLER LE NŒUD","gate.err":"Clé incorrecte. Réessayez.","gate.note":"Session valable jusqu'à la fermeture du navigateur.",
+ "boot.ready":"NŒUD PRÊT","boot.tap":"toucher pour continuer",
+ "boot.lines":["DÉMARRAGE DU CŒUR...","CHARGEMENT MODULES CRYPTO","CIRCUIT TOR (3 HOPS)","VÉRIFICATION EMPREINTE PGP","TUNNEL TLS 1.3 ÉTABLI","SYNC LEDGER LOCAL","GATE D'ACCÈS ARMÉ","ROUTAGE NŒUDS MIROIRS","NŒUD PRÊT"],
+ "home.badge":"ORIGINE DARK WEB","home.est":"EST. 2022","home.online":"EN LIGNE",
+ "home.title":"DU DARK WEB À VOTRE PORTEFEUILLE.",
+ "home.p1":"GUSTAVOEURO est né en 2022 dans les replis les plus profonds du réseau, où les nœuds ne font confiance à personne et où les transactions voyagent chiffrées. Depuis, nous sélectionnons des billets Euro Grade AAA+ et gérons des transferts PayPal en totale anonymité.",
+ "home.p2":"Nous avons encaissé plusieurs coups : pannes, attaques, infrastructures tombées. Chaque fois nous sommes revenus plus solides, plus rapides, plus silencieux. Aujourd'hui le nœud est stable et l'accès reste sur invitation.",
+ "home.cta1":"OUVRIR LE CATALOGUE","home.cta2":"TRANSFERTS PAYPAL",
+ "home.sys":"TÉLÉMÉTRIE DU NŒUD","home.log":"JOURNAL SYSTÈME","home.den":"COUPURES DISPONIBLES",
+ "home.statsTitle":"ÉTAT DU NŒUD","home.tlTitle":"CHRONOLOGIE DE RÉSISTANCE","home.idxTitle":"INDEX OPÉRATIF","home.protoTitle":"PROTOCOLES ACTIFS",
+ "lbl.node":"NODE ID","lbl.session":"SESSION","lbl.uptime":"UPTIME","lbl.hash":"HASH","lbl.relay":"RELAY",
+ "cash.kicker":"MODULE 01 // BILLETS","cash.title":"RÉSERVE DE LIQUIDE PHYSIQUE",
+ "cash.sub":"Accès au catalogue Grade AAA+. Billets en fibre de coton 100%, réussissant les tests UV, stylo et scanner bancaire.",
+ "cash.open":"OUVRIR LE CATALOGUE","cash.close":"FERMER LE CATALOGUE",
+ "cash.c10":"COUPURE 10 EUR","cash.c20":"COUPURE 20 EUR","cash.c50":"COUPURE 50 EUR",
+ "cash.pieces":"pièces","cash.specs":"SPÉCIFICATIONS","cash.verify":"VÉRIFIER LA QUALITÉ","cash.add":"AJOUTER",
+ "cash.tgTitle":"COMMANDES DE BILLETS","cash.tgText":"Lot choisi ? Écrivez-nous sur Telegram avec coupure et quantité : nous confirmons stock et expédition en quelques minutes.",
+ "cash.tgBtn":"OUVRIR TELEGRAM","cash.note":"Expédition suivie via POSTE ITALIANE, BRT, GLS, DHL ou LOCKER INPOST.",
+ "paypal.kicker":"MODULE 02 // ROUTAGE P2P","paypal.title":"TRANSFERTS PAYPAL",
+ "paypal.sub":"Système de routage P2P avec fonds propres véhiculés via des exchanges tiers. Vous recevez directement sur votre compte, en mode Amis et Famille.",
+ "paypal.cost":"VOUS ENVOYEZ","paypal.recv":"VOUS RECEVEZ","paypal.add":"AJOUTER",
+ "paypal.s1":"LIQUIDITÉ GLOBALE","paypal.s2":"NŒUDS ACTIFS","paypal.s3":"ENCRYPTION","paypal.s4":"DISPONIBILITÉ",
+ "quality.kicker":"GALERIE VÉRIFIÉE","quality.title":"QUALITY CHECK",
+ "quality.sub":"Regardez de vraies photos de chaque service avant de continuer. Transparence totale, directement à la source.",
+ "quality.pick":"CHOISIR UN SERVICE","quality.cards":"CARTES","quality.cash":"BILLETS",
+ "quality.note":"Les images montrent la qualité et l'état réels du matériel avant expédition.",
+ "inspect":["Contrôle en contre-jour : filigrane et fil de sécurité.","Inclinaison du numéro : changement de couleur correct.","Toucher du relief : gravure perceptible au pouce.","Hologramme : réaction intacte et alignée."],
+ "feedback.kicker":"REGISTRE D'AVIS","feedback.title":"AVIS DES UTILISATEURS",
+ "feedback.sub":"Avis collectés depuis le canal public. Vérifiez par vous-même, puis laissez le vôtre.",
+ "feedback.cta":"OUVRIR LE CANAL D'AVIS",
+ "faq.kicker":"SUPPORT","faq.title":"QUESTIONS FRÉQUENTES",
+ "track.kicker":"MODULE 03 // SUIVI","track.title":"ÉTAT DE LA COMMANDE","track.ph":"CODE COMMANDE (GST-...)",
+ "track.btn":"CHERCHER","track.nf":"Aucune commande trouvée avec ce code.","track.status":"STATUT","track.items":"ARTICLES","track.empty":"Aucune commande enregistrée sur cet appareil.",
+ "co.step1":"DONNÉES","co.step2":"VÉRIFICATION","co.step3":"PAIEMENT","co.step4":"CONFIRMATION",
+ "co.email":"EMAIL PAYPAL","co.email2":"CONFIRMER L'EMAIL","co.emailErr":"Format d'email invalide.","co.mismatch":"Les deux emails ne correspondent pas.",
+ "co.next":"SUIVANT","co.back":"RETOUR","co.payTitle":"MÉTHODE DE PAIEMENT",
+ "co.crypto":"CRYPTO · recommandé · 0% frais","co.sepa":"VIREMENT SEPA · +10% gestion","co.amazon":"BONS AMAZON · +20% conversion",
+ "co.network":"Réseau","co.address":"Adresse","co.amount":"Montant à envoyer","co.countdown":"Échéance de paiement",
+ "co.iban":"IBAN communiqué sur Telegram","co.amazonPh":"Code bon (15 chiffres)",
+ "co.order":"VOTRE CODE COMMANDE","co.copy":"COPIER","co.copied":"COPIÉ","co.done":"CONFIRMER LA COMMANDE",
+ "co.red.title":"PAIEMENT NON ABOUTI ?",
+ "co.red.text":"Contactez GUSTAVOEURO sur Telegram, envoyez le code commande et finalisez la commande directement dans le chat.",
+ "co.empty":"Le panier est vide.","co.summary":"RÉCAPITULATIF","co.reg":"COMMANDE ENREGISTRÉE",
+ "common.add":"Ajouter","common.remove":"Retirer","common.empty":"Panier vide","common.total":"Total",
+ "common.close":"Fermer","common.verify":"Vérifier","common.qty":"Qté","common.checkout":"CHECKOUT","common.copied":"Copié",
+ "spec.fiber":"Fibre de Coton 100%","spec.fiberP":"Fibre Premium","spec.uv":"UV Complète","spec.uvP":"UV Parfaite",
+ "spec.qty":"Quantité","spec.tech":"Technologie Gen4 Elite","spec.scan":"Scanner 100% Pass","spec.warr":"Garantie Totale",
+ "tier.p10a":"MICRO ENTRÉE","tier.p10b":"STOCK DE BASE","tier.p10c":"VOLUME 10",
+ "tier.p1":"NIVEAU ENTRÉE","tier.p2":"STOCK OPÉRATIONNEL","tier.p3":"VOLUME INDUSTRIEL",
+ "tier.p4":"PACK STARTER 50","tier.p5":"RÉSERVE BANCAIRE","tier.p6":"PUISSANCE ABSOLUE",
+ "pkg.b1":"BASE","pkg.b2":"ADVANCED","pkg.b3":"VIP","pkg.b4":"PREMIUM","pkg.b5":"ELITE","pkg.b6":"MASTER",
+ "legal.privacy.title":"POLITIQUE DE CONFIDENTIALITÉ","legal.terms.title":"CONDITIONS GÉNÉRALES","legal.cookies.title":"POLITIQUE COOKIES",
+ "stats":[["EST.","2022"],["TRANSPORTEURS","05"],["GRADE","AAA+"],["LANGUES","05"]],
+ "tl":[["2022","Nœud fondé sur le dark web. Première liste de billets."],["2023","Première grande attaque. Neuf jours d'arrêt, puis retour en ligne."],["2024","Routage PayPal via exchanges tiers activé."],["2025","Reconstruction complète de l'infrastructure. Nouveaux nœuds miroirs."],["2026","Nœud stable, cinq langues, accès sur invitation."]],
+ "idx":[["Billets","Lots Euro Grade AAA+ sélectionnés"],["Transferts","PayPal P2P avec routage externe"],["Quality","Inspection visuelle sur photos réelles"],["Avis","Registre public d'avis"],["FAQ","Huit réponses longues et claires"],["Suivi","Statut de commande par code"]],
+ "proto":["PGP 4096","ONION v3","TLS 1.3","AES-256","VERROU SESSION","RS-4096"],
+ "rev":[["Marco_D","Excellent, billets parfaits sous UV."],["Lena.K","Transfert reçu en 12 minutes. Routage propre."],["S. Bianchi","Troisième commande. Toujours à l'heure."],["Kovacs","Le site est revenu plus rapide qu'avant."],["A. Ruiz","Qualité supérieure, emballage soigné."],["Nightowl","Anonymat réel. Recommandé."]],
+ "faq":[
+  ["Comment entrer dans le portail ?","Le nœud est privé. Il faut le mot-clé, distribué aux contacts directs. Une fois saisi, la session reste valable pendant toute la navigation dans l'onglet : fermer le navigateur l'expire et il faut le ressaisir."],
+  ["Les billets passent-ils les tests ?","Oui. Chaque lot est sélectionné pour passer le contrôle UV, le test au stylo iode et la lecture au scanner. Le matériau est de la fibre de coton 100%, avec relief au toucher et hologramme correct à l'inclinaison."],
+  ["Que signifie Grade AAA+ ?","C'est notre plus haut niveau de sélection. Il désigne des spécimens à fibre premium, UV complète, impression alignée et hologramme intact. Nous ne vendons pas de grades inférieurs sauf mention expresse."],
+  ["Comment fonctionnent les transferts PayPal ?","Vous envoyez une somme et en recevez une plus élevée. Le routage passe par des exchanges tiers pour casser le lien direct entre votre compte et la destination, réduisant la traçabilité."],
+  ["Quels moyens de paiement acceptez-vous ?","Crypto (USDT TRC-20, BTC, LTC) sans frais, virement SEPA avec majoration de 10% pour la gestion, ou bons Amazon avec majoration de conversion de 20%."],
+  ["Combien de temps prend l'expédition ?","La préparation demande 24-48 heures. L'expédition se fait via POSTE ITALIANE, BRT, GLS, DHL ou LOCKER INPOST, toujours suivie. Les délais dépendent du transporteur et de la destination."],
+  ["Ma commande a mal tourné, que faire ?","Ouvrez Telegram et écrivez au contact officiel en joignant le code commande. De là, nous finalisons ou corrigeons le dossier dans le chat, sans autre canal."],
+  ["Pourquoi le site est-il parfois hors ligne ?","Parce que nous sommes nés sur le dark web et subissons des attaques récurrentes. Quand cela arrive, l'infrastructure est reconstruite et le nœud revient plus solide. C'est notre histoire, pas un défaut."]
+ ]
+}
+};
+
+/* ================= CONTEXT ================= */
+const Ctx = createContext(null);
+const useApp = () => useContext(Ctx);
+
+/* ================= UTILS ================= */
+const money = n => "€ " + Number(n).toLocaleString("it-IT");
+const rnd4  = () => Math.random().toString(36).toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,4).padEnd(4,"X");
+const hex   = n => Array.from({length:n},()=>"0123456789ABCDEF"[Math.floor(Math.random()*16)]).join("");
+const upStr = s => Math.floor(s/3600).toString().padStart(2,"0")+":"+Math.floor((s%3600)/60).toString().padStart(2,"0")+":"+(s%60).toString().padStart(2,"0");
+
+/* ================= MEDIA BOX ================= */
+function Img({src, fallbacks=[], alt="", ratio="16 / 10", zoom=false, onClick}){
+  const list = useMemo(()=>[src,...fallbacks].filter(Boolean), [src, fallbacks.join("|")]);
+  const [i,setI] = useState(0);
+  useEffect(()=>{ setI(0); }, [src]);
+  return (
+    <div className={"mbox" + (zoom?" mzoom":"")} style={{aspectRatio:ratio}} onClick={onClick}>
+      <img src={list[Math.min(i,list.length-1)]} alt={alt} loading="lazy" decoding="async"
+        onError={()=>{ if(i<list.length-1) setI(i+1); }} />
+    </div>
+  );
+}
+
+/* ================= TERMINALE ================= */
+function Terminal({lines, height=200}){
+  const [n,setN] = useState(0);
+  useEffect(()=>{
+    const iv = setInterval(()=> setN(v => v>=lines.length ? lines.length : v+1), 620);
+    return ()=>clearInterval(iv);
+  }, [lines.length]);
+  return (
+    <div className="term">
+      <div className="term-bar">
+        <i></i><i></i><i></i>
+        <span className="mono dim2" style={{fontSize:10, marginLeft:6, letterSpacing:".14em"}}>root@gustavoeuro:~</span>
+      </div>
+      <div className="term-body" style={{height}}>
+        {lines.slice(0,n).map((l,idx)=>(
+          <div key={idx}><span style={{color:"var(--tl)"}}>$</span> <span className="dim">{l}</span></div>
+        ))}
+        <span className="cursor"></span>
+      </div>
+    </div>
+  );
+}
+
+/* ================= APP ================= */
+function App(){
+  const [lang,setLang]   = useState(()=> localStorage.getItem("ge-lang") || "it");
+  const [route,setRoute] = useState(()=> window.location.hash.replace(/^#/,"") || "/boot");
+  const [session,setSession] = useState(()=> sessionStorage.getItem("ge-in")==="1");
+  const [cart,setCart]   = useState([]);
+  const [cartOpen,setCartOpen] = useState(false);
+  const [menuOpen,setMenuOpen] = useState(false);
+  const [sid] = useState(()=> hex(8));
+
+  useEffect(()=>{
+    localStorage.setItem("ge-lang", lang);
+    document.documentElement.lang = lang;
+  }, [lang]);
+
+  useEffect(()=>{
+    const onHash = ()=>{
+      const r = window.location.hash.replace(/^#/,"") || "/boot";
+      setRoute(r); setMenuOpen(false);
+      window.scrollTo(0,0);
+    };
+    window.addEventListener("hashchange", onHash);
+    return ()=> window.removeEventListener("hashchange", onHash);
+  }, []);
+
+  const t = useCallback(k => {
+    const d = DICT[lang] || DICT.it;
+    return d[k] !== undefined ? d[k] : (DICT.it[k] !== undefined ? DICT.it[k] : k);
+  }, [lang]);
+
+  const arr = useCallback(k => {
+    const d = DICT[lang] || DICT.it;
+    return d[k] !== undefined ? d[k] : (DICT.it[k] || []);
+  }, [lang]);
+
+  const go = useCallback(r => { window.location.hash = "#" + r; }, []);
+
+  const addToCart = useCallback(item => {
+    setCart(p => {
+      const f = p.find(x => x.id === item.id);
+      if(f) return p.map(x => x.id === item.id ? {...x, qty:x.qty+1} : x);
+      return [...p, {...item, qty:1}];
+    });
+    setCartOpen(true);
+  }, []);
+  const removeFromCart = useCallback(id => setCart(p => p.filter(x => x.id !== id)), []);
+  const setQty = useCallback((id,q) => setCart(p => p.map(x => x.id===id ? {...x, qty:Math.max(1,q)} : x)), []);
+  const clearCart = useCallback(()=> setCart([]), []);
+
+  const cartCount = cart.reduce((s,x)=> s + x.qty, 0);
+  const cartTotal = cart.reduce((s,x)=> s + x.qty * (x.transfer ? x.cost : x.price), 0);
+
+  const ctx = {lang,setLang,t,arr,go,route,cart,addToCart,removeFromCart,setQty,clearCart,
+    cartCount,cartTotal,cartOpen,setCartOpen,menuOpen,setMenuOpen,session,setSession,sid};
+
+  const gateNeeded = route !== "/gate" && route !== "/boot" && !session;
+
+  let page;
+  if(route === "/boot") page = <Boot/>;
+  else if(gateNeeded)   page = <Gate/>;
+  else {
+    const map = {
+      "/gate":<Gate/>,"/node":<Home/>,"/cash":<Cash/>,"/paypal":<Paypal/>,"/quality":<Quality/>,
+      "/feedback":<Feedback/>,"/faq":<Faq/>,"/track":<Track/>,
+      "/privacy":<Legal which="privacy"/>,"/terms":<Legal which="terms"/>,"/cookies":<Legal which="cookies"/>,
+      "/checkout":<Checkout/>
+    };
+    page = map[route] || <Home/>;
+  }
+
+  const shell = route !== "/boot";
+
+  return (
+    <Ctx.Provider value={ctx}>
+      {/* LIVELLO 0 — sfondo, mai sopra il contenuto */}
+      <div className="bgfx"></div>
+      <div className="bgscan"></div>
+      <div className="blob blob-a"></div>
+      <div className="blob blob-b"></div>
+      <div className="blob blob-c"></div>
+
+      {/* LIVELLO 1 — contenuto */}
+      <div className="shell">
+        {shell && <Header/>}
+        <main style={{flex:1}}>
+          <div key={route} className="fade">{page}</div>
+        </main>
+        {shell && <Footer/>}
+      </div>
+
+      {/* LIVELLO 2 — UI flottante */}
+      <CartDrawer/>
+      {shell && <FAB/>}
+    </Ctx.Provider>
+  );
+}
+
+/* ================= BOOT ================= */
+function Boot(){
+  const {arr,go,session,sid,t} = useApp();
+  const lines = arr("boot.lines");
+  const [n,setN] = useState(0);
+  const [pct,setPct] = useState(0);
+  const [done,setDone] = useState(false);
+
+  useEffect(()=>{
+    const iv = setInterval(()=> setN(v => v >= lines.length ? v : v+1), 300);
+    const pv = setInterval(()=> setPct(p => Math.min(100, p + 3)), 70);
+    const fin = setTimeout(()=> setDone(true), 3200);
+    const jump = setTimeout(()=> go(session ? "/node" : "/gate"), 4200);
+    return ()=>{ clearInterval(iv); clearInterval(pv); clearTimeout(fin); clearTimeout(jump); };
+  }, []);
+
+  return (
+    <div className="shell" style={{justifyContent:"center", alignItems:"center", padding:"40px 16px"}}>
+      <div className="wrap" style={{maxWidth:640}}>
+        <pre className="mono" style={{
+          fontSize:"clamp(5.5px,1.75vw,12px)", lineHeight:1.15, color:"var(--au)",
+          textAlign:"center", marginBottom:20, whiteSpace:"pre", overflow:"hidden"
+        }}>{ASH}</pre>
+
+        <div className="term">
+          <div className="term-bar"><i></i><i></i><i></i>
+            <span className="mono dim2" style={{fontSize:10, marginLeft:6}}>boot@ge-node</span>
+          </div>
+          <div className="term-body" style={{maxHeight:210, height:210}}>
+            {lines.slice(0,n).map((l,i)=>(
+              <div key={i}>
+                <span style={{color:"var(--au)"}}>[ok]</span> <span className="dim">{l}</span>
+              </div>
+            ))}
+            {n < lines.length && <span className="cursor"></span>}
+          </div>
+        </div>
+
+        <div style={{marginTop:16}}>
+          <div className="between mono" style={{fontSize:10.5, letterSpacing:".14em", marginBottom:7}}>
+            <span className="dim2">{done ? t("boot.ready") : "LOADING"}</span>
+            <span style={{color:"var(--au)"}}>{pct}%</span>
+          </div>
+          <div className="bar"><i style={{transform:`scaleX(${pct/100})`}}></i></div>
+          <div className="mono dim2" style={{fontSize:10, marginTop:10, letterSpacing:".1em"}}>
+            NODE {sid} · HASH {hex(16)}
+          </div>
+          {done && <div className="mono dim2" style={{fontSize:10, marginTop:6, letterSpacing:".14em"}}>▸ {t("boot.tap")}</div>}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ================= GATE ================= */
+function Gate(){
+  const {t,lang,setLang,go,setSession,sid} = useApp();
+  const [v,setV] = useState("");
+  const [err,setErr] = useState(false);
+  const LANGS = [["it","IT"],["en","EN"],["es","ES"],["de","DE"],["fr","FR"]];
+
+  const submit = e => {
+    e.preventDefault();
+    if(v.trim().toUpperCase() === decodeKey()){
+      sessionStorage.setItem("ge-in","1");
+      setSession(true); go("/node");
+    } else setErr(true);
+  };
+
+  return (
+    <div className="sect" style={{display:"flex", justifyContent:"center"}}>
+      <div className="wrap" style={{maxWidth:460}}>
+        <div className="row" style={{justifyContent:"center", marginBottom:18}}>
+          {LANGS.map(([c,l])=>(
+            <button key={c} className="chip" onClick={()=>setLang(c)}
+              style={lang===c ? {borderColor:"var(--au)", color:"var(--au)"} : {}}>{l}</button>
+          ))}
+        </div>
+
+        <form onSubmit={submit} className="card pad">
+          <div className="eyebrow" style={{color:"var(--au)", marginBottom:10}}>{t("gate.kicker")}</div>
+          <h1 style={{fontSize:"clamp(24px,5.5vw,34px)", marginBottom:10}}>{t("gate.title")}</h1>
+          <p className="dim" style={{fontSize:13.5, marginBottom:22}}>{t("gate.sub")}</p>
+
+          <label>{t("gate.ph")}</label>
+          <input autoFocus value={v} onChange={e=>{setV(e.target.value); setErr(false);}}
+            placeholder="••••••••••••" autoCapitalize="characters" autoCorrect="off" spellCheck="false" />
+          {err && <div className="mono" style={{fontSize:11, color:"var(--rs)", marginTop:8}}>✕ {t("gate.err")}</div>}
+
+          <button type="submit" className="btn btn-gold btn-block" style={{marginTop:18}}>{t("gate.btn")}</button>
+
+          <div className="mono dim2" style={{fontSize:10, marginTop:14, letterSpacing:".1em"}}>
+            {t("gate.note")} · SESSION {sid}
+          </div>
+        </form>
+
+        <div className="mono dim2" style={{fontSize:10, textAlign:"center", marginTop:16, letterSpacing:".12em"}}>
+          PGP {PGP}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ================= HEADER ================= */
+function Header(){
+  const {t,lang,setLang,go,route,cartCount,setCartOpen,menuOpen,setMenuOpen} = useApp();
+  const LANGS = ["it","en","es","de","fr"];
+  const NAV = [["/node","nav.home"],["/cash","nav.cash"],["/paypal","nav.paypal"],["/quality","nav.quality"],
+               ["/feedback","nav.feedback"],["/faq","nav.faq"],["/track","nav.track"]];
+
+  return (
+    <>
+      <header className="hdr">
+        <div className="wrap">
+          <div className="hdr-in">
+            <button className="logo" onClick={()=>go("/node")}>
+              <span className="logo-dot"></span>
+              <span className="mono tw" style={{fontWeight:700, fontSize:13}}>GUSTAVOEURO</span>
+              <span className="chip" style={{color:"var(--tl)", borderColor:"rgba(20,224,176,.3)"}}>{t("hdr.online")}</span>
+            </button>
+
+            <nav className="row" style={{gap:22, display:"none"}} id="mainnav">
+              {NAV.map(([r,k])=>(
+                <button key={r} className={"navlink" + (route===r?" on":"")} onClick={()=>go(r)}>{t(k)}</button>
+              ))}
+            </nav>
+
+            <div className="row" style={{gap:8}}>
+              <select value={lang} onChange={e=>setLang(e.target.value)}
+                className="mono" style={{width:"auto", minHeight:44, padding:"8px 34px 8px 10px", fontSize:12, backgroundPosition:"calc(100% - 16px) 19px, calc(100% - 11px) 19px"}}>
+                {LANGS.map(l=><option key={l} value={l}>{l.toUpperCase()}</option>)}
+              </select>
+              <button className="icon-btn" onClick={()=>setCartOpen(true)} aria-label={t("hdr.cart")}>
+                <span style={{color:"var(--au)", fontWeight:700}}>{cartCount}</span>
+                <span className="mono" style={{fontSize:11}}>{t("hdr.cart")}</span>
+              </button>
+              <button className="icon-btn" onClick={()=>setMenuOpen(!menuOpen)} aria-label={t("hdr.menu")}
+                style={{minWidth:44}}>
+                <span className="hamb"><i></i><i></i><i></i></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {menuOpen && (
+        <div className="mmenu">
+          <div className="wrap" style={{maxWidth:640}}>
+            <div className="eyebrow" style={{marginBottom:6}}>{t("hdr.menu")}</div>
+            {NAV.map(([r,k])=>(
+              <button key={r} className={"mmenu-item" + (route===r?" on":"")} onClick={()=>go(r)}>
+                <span>{t(k)}</span>
+                <span className="mono dim2" style={{fontSize:11}}>#{r.replace("/","")}</span>
+              </button>
+            ))}
+            <div className="row" style={{gap:8, marginTop:22}}>
+              {LANGS.map(l=>(
+                <button key={l} className="chip" onClick={()=>setLang(l)}
+                  style={lang===l ? {borderColor:"var(--au)", color:"var(--au)"} : {}}>{l.toUpperCase()}</button>
+              ))}
+            </div>
+            <div className="mono dim2" style={{fontSize:10, marginTop:26, letterSpacing:".1em"}}>
+              ONION {ONION}<br/>PGP {PGP}
+            </div>
+          </div>
+        </div>
+      )}
+      <style>{`@media(min-width:1000px){ #mainnav{display:flex !important} }`}</style>
+    </>
+  );
+}
+
+/* ================= FOOTER ================= */
+function Footer(){
+  const {t,go,sid} = useApp();
+  const [clock,setClock] = useState("");
+  const [up,setUp] = useState(0);
+
+  useEffect(()=>{
+    const f = ()=> setClock(new Date().toLocaleTimeString("it-IT"));
+    f();
+    const iv = setInterval(()=>{ f(); setUp(u=>u+1); }, 1000);
+    return ()=> clearInterval(iv);
+  }, []);
+
+  return (
+    <footer style={{borderTop:"1px solid var(--line)", background:"#06070e", marginTop:56,
+      paddingBottom:"calc(88px + env(safe-area-inset-bottom))"}}>
+      <div className="wrap" style={{paddingTop:44}}>
+        <div className="g2" style={{gap:32}}>
+          <div>
+            <div className="mono tw" style={{fontWeight:700, marginBottom:10}}>GUSTAVOEURO</div>
+            <p className="dim" style={{fontSize:12.5, marginBottom:16}}>{t("foot.founded")}</p>
+            <div className="mono dim2" style={{fontSize:10.5, lineHeight:2, wordBreak:"break-all"}}>
+              <div>PGP: {PGP}</div>
+              <div>ONION: {ONION}</div>
+              <div>SESSION: {sid} · {clock}</div>
+              <div>UPTIME: {upStr(up)}</div>
+            </div>
+          </div>
+
+          <div className="g2" style={{gap:24}}>
+            <div>
+              <div className="eyebrow" style={{marginBottom:12}}>{t("foot.legal")}</div>
+              <div style={{display:"flex", flexDirection:"column", gap:10}}>
+                <button className="link" style={{background:"none",border:0,textAlign:"left",cursor:"pointer",fontFamily:"inherit",fontSize:13}} onClick={()=>go("/privacy")}>{t("foot.privacy")}</button>
+                <button className="link" style={{background:"none",border:0,textAlign:"left",cursor:"pointer",fontFamily:"inherit",fontSize:13}} onClick={()=>go("/terms")}>{t("foot.terms")}</button>
+                <button className="link" style={{background:"none",border:0,textAlign:"left",cursor:"pointer",fontFamily:"inherit",fontSize:13}} onClick={()=>go("/cookies")}>{t("foot.cookies")}</button>
+              </div>
+            </div>
+            <div>
+              <div className="eyebrow" style={{marginBottom:12}}>{t("foot.contact")}</div>
+              <div style={{display:"flex", flexDirection:"column", gap:10}}>
+                <a className="link" style={{fontSize:13}} href={TG} target="_blank" rel="noopener noreferrer">Telegram</a>
+                <a className="link" style={{fontSize:13}} href={TG_CHAN} target="_blank" rel="noopener noreferrer">Feedback channel</a>
+                <button className="link" style={{background:"none",border:0,textAlign:"left",cursor:"pointer",fontFamily:"inherit",fontSize:13}} onClick={()=>go("/checkout")}>{t("common.checkout")}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mono dim2" style={{fontSize:10, marginTop:34, paddingTop:18, borderTop:"1px solid var(--line)"}}>
+          © {new Date().getFullYear()} GUSTAVOEURO — {t("foot.rights")} · EST. {FOUNDED}
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+/* ================= FAB ================= */
+function FAB(){
+  return (
+    <a className="fab" href={TG} target="_blank" rel="noopener noreferrer">
+      <span>TELEGRAM</span>
+    </a>
+  );
+}
+
+/* ================= CART ================= */
+function CartDrawer(){
+  const {cart,cartOpen,setCartOpen,t,go,removeFromCart,setQty,cartTotal,clearCart} = useApp();
+  return (
+    <>
+      <div className={"scrim" + (cartOpen?" on":"")} onClick={()=>setCartOpen(false)}></div>
+      <aside className={"drawer" + (cartOpen?" on":"")}>
+        <div className="between" style={{padding:18, borderBottom:"1px solid var(--line)"}}>
+          <span className="mono tw" style={{fontWeight:700, fontSize:13}}>{t("hdr.cart")} ({cart.length})</span>
+          <button className="btn btn-ghost btn-sm" onClick={()=>setCartOpen(false)}>{t("common.close")}</button>
+        </div>
+
+        <div style={{flex:1, overflowY:"auto", padding:18, display:"flex", flexDirection:"column", gap:12}}>
+          {cart.length===0 && <div className="mono dim2" style={{fontSize:12}}>{t("common.empty")}</div>}
+          {cart.map(item=>(
+            <div key={item.id} className="card flat pad">
+              <div className="between" style={{alignItems:"flex-start"}}>
+                <div style={{minWidth:0}}>
+                  <div style={{fontWeight:600, fontSize:13.5}}>{item.name}</div>
+                  <div className="mono dim2" style={{fontSize:10.5, marginTop:4}}>{item.sub}</div>
+                </div>
+                <button onClick={()=>removeFromCart(item.id)} className="mono"
+                  style={{background:"none",border:0,color:"var(--rs)",cursor:"pointer",fontSize:14}}>✕</button>
+              </div>
+              <div className="between" style={{marginTop:14}}>
+                <div className="row" style={{gap:8}}>
+                  <button className="btn btn-ghost btn-sm" style={{minWidth:40}} onClick={()=>setQty(item.id,item.qty-1)}>−</button>
+                  <span className="mono" style={{fontSize:12.5, minWidth:22, textAlign:"center"}}>{item.qty}</span>
+                  <button className="btn btn-ghost btn-sm" style={{minWidth:40}} onClick={()=>setQty(item.id,item.qty+1)}>+</button>
+                </div>
+                <div className="mono" style={{fontSize:12.5, color:"var(--au)"}}>
+                  {money(item.qty * (item.transfer ? item.cost : item.price))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div style={{padding:18, borderTop:"1px solid var(--line)"}}>
+          <div className="between" style={{marginBottom:14}}>
+            <span className="mono dim" style={{fontSize:12}}>{t("common.total")}</span>
+            <span className="mono" style={{fontWeight:700, color:"var(--au)", fontSize:16}}>{money(cartTotal)}</span>
+          </div>
+          <button className="btn btn-gold btn-block" disabled={!cart.length}
+            onClick={()=>{ setCartOpen(false); go("/checkout"); }}>{t("common.checkout")}</button>
+          {!!cart.length && <button className="btn btn-ghost btn-block" style={{marginTop:8}}
+            onClick={clearCart}>{t("common.remove")}</button>}
+        </div>
+      </aside>
+    </>
+  );
+}
+
+/* ================= SYS PANEL (codici) ================= */
+function SysPanel(){
+  const {t,sid} = useApp();
+  const [tick,setTick] = useState(0);
+  useEffect(()=>{
+    const iv = setInterval(()=>setTick(x=>x+1), 900);
+    return ()=>clearInterval(iv);
+  },[]);
+  const rows = [
+    [t("lbl.node"), "GE-" + sid],
+    [t("lbl.relay"), "tor://" + hex(6).toLowerCase() + ".onion"],
+    [t("lbl.hash"), "sha256:" + hex(12)],
+    [t("lbl.session"), sid + "-" + hex(4)]
+  ];
+  return (
+    <div className="card pad">
+      <div className="between" style={{marginBottom:14}}>
+        <span className="eyebrow" style={{color:"var(--au)"}}>{t("home.sys")}</span>
+        <span className="chip" style={{color:"var(--tl)", borderColor:"rgba(20,224,176,.3)"}}>
+          <span style={{width:6,height:6,borderRadius:99,background:"var(--tl)"}}></span>LIVE
+        </span>
+      </div>
+      <div className="mono" style={{fontSize:11, lineHeight:2.1}}>
+        {rows.map(([k,v],i)=>(
+          <div key={i} className="between" style={{gap:12}}>
+            <span className="dim2">{k}</span>
+            <span style={{color:"var(--tl)", overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap"}}>{v}</span>
+          </div>
+        ))}
+        <div className="between" style={{gap:12}}>
+          <span className="dim2">PING</span>
+          <span style={{color:"var(--au)"}}>{28 + (tick % 14)} ms</span>
+        </div>
+        <div className="between" style={{gap:12}}>
+          <span className="dim2">BLOCK</span>
+          <span className="dim">#{421000 + tick}</span>
+        </div>
+      </div>
+      <div className="mono dim2" style={{fontSize:10, marginTop:14, wordBreak:"break-all", lineHeight:1.7}}>
+        {hex(32)}<br/>{hex(32)}
+      </div>
+    </div>
+  );
+}
+
+/* ================= HOME ================= */
+function Home(){
+  const {t,arr,go} = useApp();
+  const logLines = useMemo(()=>[
+    "handshake ok · hop 1/3",
+    "relay " + hex(6).toLowerCase() + ".onion up",
+    "ledger sync block " + (421000 + Math.floor(Math.random()*900)),
+    "uv_check batch#p20b ......... PASS",
+    "scanner_probe ............... PASS",
+    "pgp verify 7B3F9A21 ......... MATCH",
+    "routing paypal/exchange ..... OK"
+  ],[]);
+
+  return (
+    <div className="sect">
+      <div className="wrap">
+
+        {/* HERO */}
+        <div className="g2" style={{gap:28, alignItems:"start"}}>
+          <div>
+            <div className="row" style={{gap:8, marginBottom:18}}>
+              <span className="chip" style={{color:"var(--au)", borderColor:"rgba(255,176,32,.35)"}}>{t("home.badge")}</span>
+              <span className="chip">{t("home.est")}</span>
+              <span className="chip" style={{color:"var(--tl)", borderColor:"rgba(20,224,176,.3)"}}>{t("home.online")}</span>
+            </div>
+
+            <div className="eyebrow" style={{color:"var(--au)", marginBottom:12}}>MODULO 00 // NODE</div>
+            <h1 style={{marginBottom:18}}>{t("home.title")}</h1>
+
+            <p className="dim" style={{fontSize:14, marginBottom:12}}>{t("home.p1")}</p>
+            <p className="dim" style={{fontSize:14, marginBottom:26}}>{t("home.p2")}</p>
+
+            <div className="row" style={{gap:10}}>
+              <button className="btn btn-gold" onClick={()=>go("/cash")}>{t("home.cta1")}</button>
+              <button className="btn btn-ghost" onClick={()=>go("/paypal")}>{t("home.cta2")}</button>
+            </div>
+          </div>
+
+          <SysPanel/>
+        </div>
+
+        {/* STATS */}
+        <div className="eyebrow" style={{marginTop:52, marginBottom:16}}>{t("home.statsTitle")}</div>
+        <div className="g2" style={{gridTemplateColumns:"repeat(2,1fr)"}}>
+          {arr("stats").map(([k,v],i)=>(
+            <div key={i} className="card pad">
+              <div className="mono dim2" style={{fontSize:10, letterSpacing:".16em"}}>{k}</div>
+              <div className="mono" style={{fontSize:24, fontWeight:700, color:"var(--au)", marginTop:6}}>{v}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* TAGLI */}
+        <div className="eyebrow" style={{marginTop:52, marginBottom:16}}>{t("home.den")}</div>
+        <div className="g3">
+          {["10","20","50"].map(d=>{
+            const p = PRODUCTS.find(x=>x.den===d);
+            return (
+              <button key={d} className="card pad" style={{textAlign:"left", cursor:"pointer", background:"var(--surface)", border:"1px solid var(--line)"}}
+                onClick={()=>go("/cash")}>
+                <Img src={p.img} fallbacks={[FALLBACK_FOR(d)]} alt={"EUR "+d} ratio="16 / 9" />
+                <div className="between" style={{marginTop:14}}>
+                  <span className="mono tw" style={{fontSize:13, fontWeight:700}}>EUR {d}</span>
+                  <span className="mono" style={{fontSize:12, color:"var(--au)"}}>da {money(p.price)}</span>
+                </div>
+                <div className="mono dim2" style={{fontSize:10.5, marginTop:6, letterSpacing:".1em"}}>
+                  {p.pieces} {t("cash.pieces")} · {t("cash.specs")} AAA+
+                </div>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* TIMELINE */}
+        <div className="eyebrow" style={{marginTop:52, marginBottom:16}}>{t("home.tlTitle")}</div>
+        <div style={{display:"flex", flexDirection:"column", gap:10}}>
+          {arr("tl").map(([y,d],i)=>(
+            <div key={i} className="card pad" style={{display:"flex", gap:18, alignItems:"flex-start"}}>
+              <span className="mono" style={{color:"var(--au)", fontWeight:700, fontSize:13, minWidth:46}}>{y}</span>
+              <span className="dim" style={{fontSize:13.5}}>{d}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* MARQUEE */}
+        <div className="marquee card" style={{marginTop:52, padding:"12px 0"}}>
+          <div className="marquee-in mono" style={{fontSize:11.5}}>
+            {[...arr("proto"), ...arr("proto")].map((p,i)=>(
+              <span key={i} style={{color:"var(--au)"}}>◆ {p}</span>
+            ))}
+          </div>
+        </div>
+
+        {/* LOG + INDEX */}
+        <div className="g2" style={{marginTop:52, gap:28, alignItems:"start"}}>
+          <div>
+            <div className="eyebrow" style={{marginBottom:16}}>{t("home.log")}</div>
+            <Terminal lines={logLines} height={210}/>
+          </div>
+          <div>
+            <div className="eyebrow" style={{marginBottom:16}}>{t("home.idxTitle")}</div>
+            <div style={{display:"flex", flexDirection:"column", gap:10}}>
+              {arr("idx").map(([ti,de],i)=>{
+                const routes = ["/cash","/paypal","/quality","/feedback","/faq","/track"];
+                return (
+                  <button key={i} onClick={()=>go(routes[i])} className="card flat pad"
+                    style={{textAlign:"left", cursor:"pointer", background:"#090b14", border:"1px solid var(--line)"}}>
+                    <div className="between">
+                      <span style={{fontWeight:600, fontSize:13.5}}>{ti}</span>
+                      <span className="mono" style={{fontSize:10, color:"var(--au)"}}>0{i+1} →</span>
+                    </div>
+                    <div className="dim2" style={{fontSize:12, marginTop:4}}>{de}</div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* PROTOCOLLI */}
+        <div className="eyebrow" style={{marginTop:52, marginBottom:16}}>{t("home.protoTitle")}</div>
+        <div className="row" style={{gap:8}}>
+          {arr("proto").map((p,i)=><span key={i} className="chip">{p}</span>)}
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
+/* ================= CASH ================= */
+function Cash(){
+  const {t,arr,addToCart} = useApp();
+  const [open,setOpen] = useState(false);
+  const [modal,setModal] = useState(null);
+
+  const specs = p => SPEC_KEYS.map(k =>
+    k === "spec.qty" ? `${t("spec.qty")}: ${p.pieces} ${t("cash.pieces")}` : t(k)
+  );
+
+  const Card = ({p}) => (
+    <div className="card pad">
+      <Img src={p.img} fallbacks={[FALLBACK_FOR(p.den)]} alt={"EUR "+p.den} />
+      <div className="between" style={{marginTop:16, marginBottom:12}}>
+        <span className="mono" style={{fontSize:10.5, color:"var(--au)"}}>{t(p.tier)}</span>
+        <span className="chip">{p.pieces} {t("cash.pieces")}</span>
+      </div>
+      <div style={{fontSize:24, fontWeight:700}}>{money(p.price)}</div>
+      <div className="mono dim2" style={{fontSize:10.5, marginTop:4, marginBottom:16}}>EUR {p.den} · {p.pieces}×</div>
+      <div style={{display:"flex", flexDirection:"column", gap:6, marginBottom:18}}>
+        {specs(p).map((s,i)=>(
+          <div key={i} className="mono dim" style={{fontSize:10.5, display:"flex", gap:8}}>
+            <span style={{color:"var(--tl)"}}>✓</span>{s}
+          </div>
+        ))}
+      </div>
+      <div className="row" style={{gap:8}}>
+        <button className="btn btn-gold" style={{flex:1}}
+          onClick={()=>addToCart({id:p.id, name:`EUR ${p.den} · ${money(p.price)}`,
+            sub:`${p.pieces} ${t("cash.pieces")} · ${t(p.tier)}`, price:p.price, den:p.den})}>
+          {t("cash.add")}
+        </button>
+        <button className="btn btn-ghost" onClick={()=>setModal(p)}>{t("common.verify")}</button>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="sect">
+      <div className="wrap">
+        <div className="eyebrow" style={{color:"var(--au)", marginBottom:12}}>{t("cash.kicker")}</div>
+        <h1 style={{marginBottom:14}}>{t("cash.title")}</h1>
+        <p className="dim" style={{maxWidth:620, fontSize:14, marginBottom:26}}>{t("cash.sub")}</p>
+
+        {!open && <button className="btn btn-gold" onClick={()=>setOpen(true)}>{t("cash.open")}</button>}
+
+        {open && (
+          <div className="fade">
+            {[["10","cash.c10"],["20","cash.c20"],["50","cash.c50"]].map(([d,key])=>(
+              <div key={d} style={{marginTop:44}}>
+                <h2 className="mono tw" style={{fontSize:14, color:"var(--au)", marginBottom:18}}>{t(key)}</h2>
+                <div className="g3">
+                  {PRODUCTS.filter(p=>p.den===d).map(p=><Card key={p.id} p={p}/>)}
+                </div>
+              </div>
+            ))}
+
+            {/* UNICO box Telegram in fondo al catalogo */}
+            <div className="card pad" style={{marginTop:48}}>
+              <div className="eyebrow" style={{color:"var(--mg)", marginBottom:10}}>{t("cash.tgTitle")}</div>
+              <p className="dim" style={{fontSize:13.5, maxWidth:620, marginBottom:18}}>{t("cash.tgText")}</p>
+              <a className="btn btn-gold" href={TG} target="_blank" rel="noopener noreferrer">{t("cash.tgBtn")}</a>
+            </div>
+
+            <div className="mono dim2" style={{fontSize:11, marginTop:20}}>{t("cash.note")}</div>
+            <button className="btn btn-ghost" style={{marginTop:20}} onClick={()=>setOpen(false)}>{t("cash.close")}</button>
+          </div>
+        )}
+      </div>
+
+      {modal && <InspectModal product={modal} onClose={()=>setModal(null)}/>}
+    </div>
+  );
+}
+
+/* ================= MODAL ISPEZIONE ================= */
+function InspectModal({product,onClose}){
+  const {t,arr,lang} = useApp();
+  const [big,setBig] = useState(null);
+  const steps = arr("inspect");
+
+  return (
+    <div className="modal-scrim" onClick={onClose}>
+      <div className="modal" onClick={e=>e.stopPropagation()}>
+        <div className="between" style={{padding:16, borderBottom:"1px solid var(--line)", position:"sticky", top:0, background:"var(--surface)", zIndex:2}}>
+          <span className="mono tw" style={{fontSize:12.5, fontWeight:700}}>{t("cash.verify")} · EUR {product.den}</span>
+          <button className="btn btn-ghost btn-sm" onClick={onClose}>{t("common.close")}</button>
+        </div>
+
+        <div style={{padding:16}}>
+          <div className="g3" style={{gridTemplateColumns:"repeat(2,1fr)"}}>
+            {product.gallery.map((g,i)=>(
+              <Img key={i} src={g} fallbacks={[FALLBACK_FOR(product.den)]} alt="" zoom onClick={()=>setBig(g)} />
+            ))}
+          </div>
+
+          <div className="eyebrow" style={{marginTop:24, marginBottom:12}}>{t("cash.specs")}</div>
+          <div style={{display:"flex", flexDirection:"column", gap:10}}>
+            {steps.map((s,i)=>(
+              <div key={i} className="card flat pad" style={{display:"flex", gap:14, alignItems:"flex-start"}}>
+                <span className="mono" style={{color:"var(--au)", fontSize:11, fontWeight:700}}>0{i+1}</span>
+                <span className="dim" style={{fontSize:13}}>{s}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {big && (
+        <div className="modal-scrim" style={{zIndex:80, padding:10}} onClick={e=>{e.stopPropagation(); setBig(null);}}>
+          <div style={{width:"100%", maxWidth:900}}>
+            <Img src={big} fallbacks={[FALLBACK_FOR(product.den)]} alt="" ratio="16 / 10" />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ================= PAYPAL ================= */
+function Paypal(){
+  const {t,addToCart} = useApp();
+  return (
+    <div className="sect">
+      <div className="wrap">
+        <div className="eyebrow" style={{color:"var(--bl)", marginBottom:12}}>{t("paypal.kicker")}</div>
+        <h1 style={{marginBottom:14}}>{t("paypal.title")}</h1>
+        <p className="dim" style={{maxWidth:640, fontSize:14, marginBottom:26}}>{t("paypal.sub")}</p>
+
+        <div className="g2" style={{gridTemplateColumns:"repeat(2,1fr)", marginBottom:32}}>
+          {[["paypal.s1","ONLINE"],["paypal.s2","1/2"],["paypal.s3","RSA-4096"],["paypal.s4","ALTA"]].map(([k,v],i)=>(
+            <div key={i} className="card flat pad">
+              <div className="mono dim2" style={{fontSize:10, letterSpacing:".16em"}}>{t(k)}</div>
+              <div className="mono" style={{fontSize:15, fontWeight:700, color:"var(--bl)", marginTop:6}}>{v}</div>
+            </div>
+          ))}
+        </div>
+
+        <div className="g3">
+          {PACKAGES.map(p=>(
+            <div key={p.id} className="card pad">
+              <div className="mono" style={{fontSize:11, color:"var(--bl)", marginBottom:14}}>{t(p.tier)}</div>
+              <div className="row" style={{gap:14, alignItems:"flex-end", marginBottom:18}}>
+                <div>
+                  <div className="mono dim2" style={{fontSize:10}}>{t("paypal.cost")}</div>
+                  <div className="mono" style={{fontSize:18, fontWeight:700}}>{money(p.cost)}</div>
+                </div>
+                <div className="mono" style={{color:"var(--au)", paddingBottom:3}}>→</div>
+                <div>
+                  <div className="mono dim2" style={{fontSize:10}}>{t("paypal.recv")}</div>
+                  <div className="mono" style={{fontSize:22, fontWeight:700, color:"var(--tl)"}}>{money(p.recv)}</div>
+                </div>
+              </div>
+              <button className="btn btn-gold btn-block"
+                onClick={()=>addToCart({id:p.id, name:`PAYPAL ${t(p.tier)}`, sub:`${money(p.cost)} → ${money(p.recv)}`,
+                  cost:p.cost, recv:p.recv, transfer:true})}>
+                {t("paypal.add")}
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ================= QUALITY ================= */
+function Quality(){
+  const {t} = useApp();
+  const [svc,setSvc] = useState("10");
+  const [big,setBig] = useState(null);
+  const OPTS = [["10","10 EUR"],["20","20 EUR"],["50","50 EUR"],["cards",t("quality.cards")]];
+  const list = svc==="cards" ? GAL_CARDS : svc==="50" ? GAL_50 : svc==="20" ? GAL_20 : GAL_10;
+  const fb = svc==="cards" ? GAL_CARDS[0] : FALLBACK_FOR(svc);
+
+  return (
+    <div className="sect">
+      <div className="wrap">
+        <div className="eyebrow" style={{color:"var(--tl)", marginBottom:12}}>{t("quality.kicker")}</div>
+        <h1 style={{marginBottom:14}}>{t("quality.title")}</h1>
+        <p className="dim" style={{maxWidth:640, fontSize:14, marginBottom:24}}>{t("quality.sub")}</p>
+
+        <div className="eyebrow" style={{marginBottom:12}}>{t("quality.pick")}</div>
+        <div className="row" style={{gap:8, marginBottom:26}}>
+          {OPTS.map(([k,l])=>(
+            <button key={k} className="btn btn-ghost btn-sm"
+              style={svc===k ? {borderColor:"var(--au)", color:"var(--au)"} : {}}
+              onClick={()=>setSvc(k)}>{l}</button>
+          ))}
+        </div>
+
+        <div className="g3">
+          {list.map((g,i)=>(
+            <Img key={svc+"-"+i} src={g} fallbacks={[fb]} alt="" zoom onClick={()=>setBig(g)} />
+          ))}
+        </div>
+
+        <div className="mono dim2" style={{fontSize:11, marginTop:22}}>{t("quality.note")}</div>
+      </div>
+
+      {big && (
+        <div className="modal-scrim" onClick={()=>setBig(null)}>
+          <div style={{width:"100%", maxWidth:900}}>
+            <Img src={big} fallbacks={[fb]} alt="" ratio="16 / 10" />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ================= FEEDBACK ================= */
+function Feedback(){
+  const {t,arr} = useApp();
+  return (
+    <div className="sect">
+      <div className="wrap">
+        <div className="eyebrow" style={{color:"var(--mg)", marginBottom:12}}>{t("feedback.kicker")}</div>
+        <h1 style={{marginBottom:14}}>{t("feedback.title")}</h1>
+        <p className="dim" style={{maxWidth:620, fontSize:14, marginBottom:26}}>{t("feedback.sub")}</p>
+
+        <div className="g3" style={{marginBottom:30}}>
+          {arr("rev").map(([n,x],i)=>(
+            <div key={i} className="card pad">
+              <div className="between" style={{marginBottom:12}}>
+                <span className="mono" style={{fontSize:11, color:"var(--mg)"}}>{n}</span>
+                <span className="mono" style={{fontSize:11, color:"var(--au)"}}>★★★★★</span>
+              </div>
+              <p className="dim" style={{fontSize:13.5}}>{x}</p>
+            </div>
+          ))}
+        </div>
+
+        <a className="btn btn-gold" href={TG_CHAN} target="_blank" rel="noopener noreferrer">{t("feedback.cta")}</a>
+      </div>
+    </div>
+  );
+}
+
+/* ================= FAQ ================= */
+function Faq(){
+  const {t,arr} = useApp();
+  const [open,setOpen] = useState(-1);
+  return (
+    <div className="sect">
+      <div className="wrap" style={{maxWidth:800}}>
+        <div className="eyebrow" style={{color:"var(--rs)", marginBottom:12}}>{t("faq.kicker")}</div>
+        <h1 style={{marginBottom:26}}>{t("faq.title")}</h1>
+
+        <div style={{display:"flex", flexDirection:"column", gap:10}}>
+          {arr("faq").map(([q,a],i)=>(
+            <div key={i} className="card pad">
+              <button onClick={()=>setOpen(open===i ? -1 : i)}
+                style={{width:"100%", background:"none", border:0, color:"var(--fg)", cursor:"pointer",
+                  display:"flex", justifyContent:"space-between", gap:16, textAlign:"left",
+                  fontFamily:"inherit", fontSize:14, fontWeight:600, padding:0, alignItems:"flex-start"}}>
+                <span>{q}</span>
+                <span className="mono" style={{color:"var(--au)", flexShrink:0, fontSize:16}}>{open===i?"−":"+"}</span>
+              </button>
+              <div className="acc" style={{maxHeight: open===i ? 600 : 0, opacity: open===i ? 1 : 0}}>
+                <p className="dim" style={{fontSize:13.5, paddingTop:14}}>{a}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ================= TRACK ================= */
+function Track(){
+  const {t} = useApp();
+  const [code,setCode] = useState("");
+  const [found,setFound] = useState(null);
+  const [searched,setSearched] = useState(false);
+  const all = useMemo(()=> JSON.parse(localStorage.getItem("ge-orders") || "[]"), []);
+
+  const search = ()=>{
+    const o = all.find(x => x.code.toUpperCase() === code.trim().toUpperCase());
+    setFound(o || null); setSearched(true);
+  };
+
+  return (
+    <div className="sect">
+      <div className="wrap" style={{maxWidth:680}}>
+        <div className="eyebrow" style={{marginBottom:12}}>{t("track.kicker")}</div>
+        <h1 style={{marginBottom:26}}>{t("track.title")}</h1>
+
+        <div className="card pad">
+          <label>{t("track.ph")}</label>
+          <div className="row" style={{gap:10}}>
+            <input value={code} onChange={e=>setCode(e.target.value)} placeholder="GST-1500-250-7K3F"
+              style={{flex:1, minWidth:180}} autoCapitalize="characters" autoCorrect="off" spellCheck="false" />
+            <button className="btn btn-gold" onClick={search}>{t("track.btn")}</button>
+          </div>
+        </div>
+
+        {searched && !found && <div className="mono" style={{fontSize:12, color:"var(--rs)", marginTop:18}}>✕ {t("track.nf")}</div>}
+
+        {found && (
+          <div className="card pad" style={{marginTop:18}}>
+            <div className="mono dim2" style={{fontSize:10.5}}>{t("co.order")}</div>
+            <div className="mono" style={{fontSize:15, fontWeight:700, color:"var(--au)", marginBottom:14}}>{found.code}</div>
+            <div className="mono dim2" style={{fontSize:10.5}}>{t("track.status")}</div>
+            <div className="mono" style={{fontSize:13, color:"var(--tl)", marginBottom:14}}>{found.status}</div>
+            <div className="mono dim2" style={{fontSize:10.5, marginBottom:8}}>{t("track.items")}</div>
+            {found.items.map((it,i)=>(
+              <div key={i} className="mono dim" style={{fontSize:12}}>{it.qty}× {it.name}</div>
+            ))}
+          </div>
+        )}
+
+        {!all.length && !searched && (
+          <div className="mono dim2" style={{fontSize:11, marginTop:18}}>{t("track.empty")}</div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ================= LEGAL ================= */
+function Legal({which}){
+  const {t,lang} = useApp();
+  const P = {
+    it:{
+      privacy:["GUSTAVOEURO raccoglie il minimo indispensabile. Non esiste un account utente: la sessione vive in sessionStorage e la lingua in localStorage, entrambi sul tuo dispositivo.",
+        "Quando effettui un ordine, i dati che fornisci (email PayPal, indirizzo di spedizione, codice ordine) vengono salvati localmente nel tuo browser sotto la chiave ge-orders. Non passano da un database centrale.",
+        "I servizi esterni contattati sono limitati: Google Fonts per i caratteri, cdn.tailwindcss.com per lo stile, unpkg/jsdelivr per le librerie, i.ibb.co per le immagini e api.qrserver.com per la generazione dei codici QR."],
+      terms:["L'accesso al portale è riservato e avviene tramite parola chiave. La chiave può essere distribuita ai contatti diretti senza preavviso.",
+        "I prezzi indicati sono espressi in Euro e si riferiscono ai lotti di banconote e ai pacchetti di trasferimento elencati. Le quantità sono indicative e soggette a disponibilità.",
+        "Le spedizioni avvengono tramite corrieri tracciati. GUSTAVOEURO non è responsabile di ritardi imputabili al corriere o alla dogana. In caso di problemi, il codice ordine permette di aprire una pratica su Telegram."],
+      cookies:["Questo sito non usa cookie di profilazione. L'unico dato persistente è la lingua scelta, salvata in localStorage sotto la chiave ge-lang.",
+        "La sessione di accesso è salvata in sessionStorage con la chiave ge-in e si azzera alla chiusura del browser. Questo significa che non resti loggato tra una visita e l'altra.",
+        "Gli ordini sono salvati in localStorage con la chiave ge-orders, per permetterti di recuperarli dalla pagina di tracciamento anche dopo la chiusura della scheda."]
+    },
+    en:{
+      privacy:["GUSTAVOEURO collects the bare minimum. There is no user account: the session lives in sessionStorage and the language in localStorage, both on your device.",
+        "When you place an order, the data you provide (PayPal email, shipping address, order code) is saved locally in your browser under the key ge-orders. It does not pass through a central database.",
+        "External services contacted are limited: Google Fonts for typefaces, cdn.tailwindcss.com for styling, unpkg/jsdelivr for libraries, i.ibb.co for images and api.qrserver.com for QR generation."],
+      terms:["Access to the portal is restricted and happens via keyword. The key can be shared with direct contacts without notice.",
+        "Listed prices are in Euro and refer to the banknote batches and transfer packages shown. Quantities are indicative and subject to availability.",
+        "Shipping is via tracked carriers. GUSTAVOEURO is not liable for delays caused by the carrier or customs. If issues arise, the order code lets you open a case on Telegram."],
+      cookies:["This site uses no profiling cookies. The only persistent data is the chosen language, saved in localStorage under ge-lang.",
+        "The access session is stored in sessionStorage under ge-in and resets when the browser closes. This means you are not kept logged in between visits.",
+        "Orders are stored in localStorage under ge-orders, so you can retrieve them from the tracking page even after closing the tab."]
+    },
+    es:{
+      privacy:["GUSTAVOEURO recoge lo mínimo indispensable. No existe cuenta de usuario: la sesión vive en sessionStorage y el idioma en localStorage, ambos en tu dispositivo.",
+        "Cuando realizas un pedido, los datos que facilitas (email PayPal, dirección de envío, código de pedido) se guardan localmente en tu navegador bajo la clave ge-orders. No pasan por una base de datos central.",
+        "Los servicios externos contactados son limitados: Google Fonts para las tipografías, cdn.tailwindcss.com para el estilo, unpkg/jsdelivr para las librerías, i.ibb.co para las imágenes y api.qrserver.com para los códigos QR."],
+      terms:["El acceso al portal es restringido y se realiza mediante palabra clave. La clave puede distribuirse a contactos directos sin previo aviso.",
+        "Los precios indicados están en Euros y se refieren a los lotes de billetes y paquetes de transferencia listados. Las cantidades son indicativas y están sujetas a disponibilidad.",
+        "Los envíos se realizan mediante transportistas con seguimiento. GUSTAVOEURO no es responsable de retrasos imputables al transportista o a la aduana. Ante problemas, el código de pedido permite abrir un caso en Telegram."],
+      cookies:["Este sitio no usa cookies de perfilado. El único dato persistente es el idioma elegido, guardado en localStorage bajo ge-lang.",
+        "La sesión de acceso se guarda en sessionStorage bajo ge-in y se reinicia al cerrar el navegador. Esto significa que no quedas conectado entre visitas.",
+        "Los pedidos se guardan en localStorage bajo ge-orders, para que puedas recuperarlos desde la página de rastreo incluso tras cerrar la pestaña."]
+    },
+    de:{
+      privacy:["GUSTAVOEURO erhebt das absolute Minimum. Es gibt kein Nutzerkonto: Die Session lebt im sessionStorage, die Sprache im localStorage, beides auf deinem Gerät.",
+        "Bei einer Bestellung werden die von dir angegebenen Daten (PayPal-E-Mail, Versandadresse, Bestellcode) lokal im Browser unter dem Schlüssel ge-orders gespeichert. Sie laufen nicht über eine zentrale Datenbank.",
+        "Kontaktierte externe Dienste sind begrenzt: Google Fonts für Schriften, cdn.tailwindcss.com für Styling, unpkg/jsdelivr für Bibliotheken, i.ibb.co für Bilder und api.qrserver.com für QR-Codes."],
+      terms:["Der Zugang zum Portal ist beschränkt und erfolgt per Kennwort. Der Schlüssel kann ohne Vorankündigung an direkte Kontakte weitergegeben werden.",
+        "Die angegebenen Preise sind in Euro und beziehen sich auf die gelisteten Banknoten-Chargen und Transfer-Pakete. Mengen sind Richtwerte und abhängig von Verfügbarkeit.",
+        "Der Versand erfolgt über verfolgte Kuriere. GUSTAVOEURO haftet nicht für Verzögerungen durch Kurier oder Zoll. Bei Problemen ermöglicht der Bestellcode die Eröffnung eines Falls auf Telegram."],
+      cookies:["Diese Seite nutzt keine Profiling-Cookies. Einziges persistentes Datum ist die gewählte Sprache, gespeichert im localStorage unter ge-lang.",
+        "Die Zugriffssession liegt im sessionStorage unter ge-in und wird beim Schließen des Browsers zurückgesetzt. Du bleibst also nicht zwischen Besuchen eingeloggt.",
+        "Bestellungen werden im localStorage unter ge-orders gespeichert, damit du sie auch nach dem Schließen des Tabs über die Verfolgungsseite abrufen kannst."]
+    },
+    fr:{
+      privacy:["GUSTAVOEURO collecte le strict minimum. Il n'y a pas de compte utilisateur : la session vit dans sessionStorage et la langue dans localStorage, tous deux sur votre appareil.",
+        "Lors d'une commande, les données fournies (email PayPal, adresse d'expédition, code commande) sont enregistrées localement dans votre navigateur sous la clé ge-orders. Elles ne passent pas par une base centrale.",
+        "Les services externes contactés sont limités : Google Fonts pour les polices, cdn.tailwindcss.com pour le style, unpkg/jsdelivr pour les librairies, i.ibb.co pour les images et api.qrserver.com pour les QR codes."],
+      terms:["L'accès au portail est restreint et se fait par mot-clé. La clé peut être distribuée aux contacts directs sans préavis.",
+        "Les prix indiqués sont en Euros et concernent les lots de billets et les packs de transfert listés. Les quantités sont indicatives et soumises à disponibilité.",
+        "Les expéditions se font via des transporteurs suivis. GUSTAVOEURO n'est pas responsable des retards imputables au transporteur ou à la douane. En cas de problème, le code commande permet d'ouvrir un dossier sur Telegram."],
+      cookies:["Ce site n'utilise pas de cookies de profilage. La seule donnée persistante est la langue choisie, enregistrée dans localStorage sous ge-lang.",
+        "La session d'accès est stockée dans sessionStorage sous ge-in et se réinitialise à la fermeture du navigateur. Vous n'êtes donc pas maintenu connecté entre les visites.",
+        "Les commandes sont stockées dans localStorage sous ge-orders, pour que vous puissiez les retrouver depuis la page de suivi même après avoir fermé l'onglet."]
+    }
+  };
+  const data = (P[lang] || P.it)[which];
+  return (
+    <div className="sect">
+      <div className="wrap" style={{maxWidth:760}}>
+        <div className="eyebrow" style={{marginBottom:12}}>{t("foot.legal")}</div>
+        <h1 style={{marginBottom:26}}>{t("legal."+which+".title")}</h1>
+        <div style={{display:"flex", flexDirection:"column", gap:18}}>
+          {data.map((p,i)=> <p key={i} className="dim" style={{fontSize:13.5}}>{p}</p>)}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ================= CHECKOUT ================= */
+function Checkout(){
+  const {t,cart,cartTotal,clearCart,go} = useApp();
+  const [step,setStep] = useState(0);
+  const [f,setF] = useState({name:"",addr:"",city:"",zip:"",country:"",phone:"",prefix:"+39",carrier:CARRIERS[0],note:"",email:"",email2:""});
+  const [method,setMethod] = useState("crypto");
+  const [net,setNet] = useState("USDT");
+  const [amazon,setAmazon] = useState("");
+  const [order,setOrder] = useState(null);
+  const [left,setLeft] = useState(30*60);
+  const [copied,setCopied] = useState("");
+
+  const onlyTransfers = cart.length>0 && cart.every(x=>x.transfer);
+  const hasTransfers = cart.some(x=>x.transfer);
+
+  useEffect(()=>{
+    if(step!==2) return;
+    const iv = setInterval(()=> setLeft(l => Math.max(0,l-1)), 1000);
+    return ()=> clearInterval(iv);
+  }, [step]);
+
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.email);
+  const emailMatch = f.email !== "" && f.email === f.email2;
+  const total = method==="sepa" ? Math.round(cartTotal*1.1) : method==="amazon" ? Math.round(cartTotal*1.2) : cartTotal;
+  const mm = String(Math.floor(left/60)).padStart(2,"0");
+  const ss = String(left%60).padStart(2,"0");
+
+  const canNext = () => {
+    if(step===0 && onlyTransfers) return emailOk && emailMatch;
+    return true;
+  };
+
+  const confirm = ()=>{
+    const tags = cart.map(i => i.transfer ? i.recv : i.price).join("-");
+    const code = "GST-" + tags + "-" + rnd4();
+    const rec = {code, status:"IN ATTESA DI PAGAMENTO", method,
+      items: cart.map(i=>({name:i.name, qty:i.qty})), total, email:f.email, created:Date.now()};
+    const all = JSON.parse(localStorage.getItem("ge-orders") || "[]");
+    all.push(rec);
+    localStorage.setItem("ge-orders", JSON.stringify(all));
+    setOrder(rec); setStep(3); clearCart();
+  };
+
+  const copy = (txt,key)=>{
+    try { navigator.clipboard.writeText(txt); } catch(e){}
+    setCopied(key); setTimeout(()=>setCopied(""), 1400);
+  };
+
+  if(!cart.length && step<3){
+    return (
+      <div className="sect" style={{textAlign:"center"}}>
+        <div className="wrap">
+          <div className="mono dim" style={{fontSize:12, marginBottom:20}}>{t("co.empty")}</div>
+          <button className="btn btn-gold" onClick={()=>go("/cash")}>{t("home.cta1")}</button>
+        </div>
+      </div>
+    );
+  }
+
+  const STEPS = [t("co.step1"),t("co.step2"),t("co.step3"),t("co.step4")];
+
+  return (
+    <div className="sect">
+      <div className="wrap" style={{maxWidth:820}}>
+        <div className="row" style={{gap:8, marginBottom:26}}>
+          {STEPS.map((s,i)=>(
+            <span key={i} className="chip" style={step>=i ? {borderColor:"var(--au)", color:"var(--au)"} : {}}>{i+1}. {s}</span>
+          ))}
+        </div>
+
+        {step===0 && (
+          <div className="card pad">
+            {onlyTransfers ? (
+              <>
+                <label>{t("co.email")}</label>
+                <input value={f.email} onChange={e=>setF({...f,email:e.target.value})} placeholder="you@paypal.com"
+                  type="email" autoCapitalize="none" autoCorrect="off" spellCheck="false" />
+                {f.email && !emailOk && <div className="mono" style={{fontSize:11, color:"var(--rs)", marginTop:8}}>✕ {t("co.emailErr")}</div>}
+                <div style={{height:16}}></div>
+                <label>{t("co.email2")}</label>
+                <input value={f.email2} onChange={e=>setF({...f,email2:e.target.value})} placeholder="you@paypal.com"
+                  type="email" autoCapitalize="none" autoCorrect="off" spellCheck="false" />
+                {f.email2 && !emailMatch && <div className="mono" style={{fontSize:11, color:"var(--rs)", marginTop:8}}>✕ {t("co.mismatch")}</div>}
+              </>
+            ) : (
+              <div className="g2" style={{gap:14}}>
+                <div style={{gridColumn:"1 / -1"}}><label>Nome</label><input value={f.name} onChange={e=>setF({...f,name:e.target.value})}/></div>
+                <div style={{gridColumn:"1 / -1"}}><label>Indirizzo</label><input value={f.addr} onChange={e=>setF({...f,addr:e.target.value})}/></div>
+                <div><label>Città</label><input value={f.city} onChange={e=>setF({...f,city:e.target.value})}/></div>
+                <div><label>CAP</label><input value={f.zip} onChange={e=>setF({...f,zip:e.target.value})} inputMode="numeric"/></div>
+                <div><label>Paese</label><input value={f.country} onChange={e=>setF({...f,country:e.target.value})}/></div>
+                <div>
+                  <label>Telefono</label>
+                  <div className="row" style={{gap:8}}>
+                    <select value={f.prefix} onChange={e=>setF({...f,prefix:e.target.value})} style={{width:96}}>
+                      {PREFIXES.map(p=><option key={p}>{p}</option>)}
+                    </select>
+                    <input value={f.phone} onChange={e=>setF({...f,phone:e.target.value})} inputMode="tel" style={{flex:1}}/>
+                  </div>
+                </div>
+                <div style={{gridColumn:"1 / -1"}}>
+                  <label>Corriere</label>
+                  <select value={f.carrier} onChange={e=>setF({...f,carrier:e.target.value})}>
+                    {CARRIERS.map(c=><option key={c}>{c}</option>)}
+                  </select>
+                </div>
+                <div style={{gridColumn:"1 / -1"}}><label>Note</label><input value={f.note} onChange={e=>setF({...f,note:e.target.value})}/></div>
+                {hasTransfers && (
+                  <>
+                    <div style={{gridColumn:"1 / -1"}}><label>{t("co.email")}</label>
+                      <input value={f.email} onChange={e=>setF({...f,email:e.target.value})} type="email" autoCapitalize="none"/>
+                    </div>
+                    <div style={{gridColumn:"1 / -1"}}><label>{t("co.email2")}</label>
+                      <input value={f.email2} onChange={e=>setF({...f,email2:e.target.value})} type="email" autoCapitalize="none"/>
+                    </div>
+                  </>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+
+        {step===1 && (
+          <div className="card pad">
+            <div className="eyebrow" style={{marginBottom:16}}>{t("co.summary")}</div>
+            {cart.map(i=>(
+              <div key={i.id} className="between mono" style={{fontSize:12.5, padding:"10px 0", borderBottom:"1px solid var(--line)"}}>
+                <span>{i.qty}× {i.name}</span>
+                <span style={{color:"var(--au)"}}>{money(i.qty * (i.transfer ? i.cost : i.price))}</span>
+              </div>
+            ))}
+            <div className="between" style={{marginTop:16}}>
+              <span className="mono dim" style={{fontSize:12}}>{t("common.total")}</span>
+              <span className="mono" style={{fontWeight:700, color:"var(--au)", fontSize:16}}>{money(cartTotal)}</span>
+            </div>
+          </div>
+        )}
+
+        {step===2 && (
+          <div className="card pad">
+            <div className="eyebrow" style={{marginBottom:16}}>{t("co.payTitle")}</div>
+            <div style={{display:"flex", flexDirection:"column", gap:10, marginBottom:22}}>
+              {[["crypto","co.crypto"],["sepa","co.sepa"],["amazon","co.amazon"]].map(([k,kk])=>(
+                <button key={k} onClick={()=>setMethod(k)} className="card flat pad"
+                  style={{textAlign:"left", cursor:"pointer", background:"#090b14",
+                    border: method===k ? "1px solid var(--au)" : "1px solid var(--line)", fontFamily:"inherit", color:"var(--fg)"}}>
+                  <span style={{fontSize:13}}>{t(kk)}</span>
+                </button>
+              ))}
+            </div>
+
+            {method==="crypto" && (
+              <div className="card flat pad">
+                <div className="row" style={{gap:8, marginBottom:20}}>
+                  {Object.keys(WALLETS).map(k=>(
+                    <button key={k} className="btn btn-ghost btn-sm"
+                      style={net===k ? {borderColor:"var(--au)", color:"var(--au)"} : {}}
+                      onClick={()=>setNet(k)}>{WALLETS[k].label}</button>
+                  ))}
+                </div>
+                <div className="g2" style={{gap:22, alignItems:"start"}}>
+                  <div>
+                    <label>{t("co.address")}</label>
+                    <div className="mono dim" style={{fontSize:11, wordBreak:"break-all", marginBottom:18}}>{WALLETS[net].addr}</div>
+                    <label>{t("co.amount")}</label>
+                    <div className="mono" style={{fontSize:20, fontWeight:700, color:"var(--au)"}}>{money(cartTotal)}</div>
+                    <div className="mono" style={{fontSize:11, marginTop:14, color:"var(--rs)"}}>
+                      {t("co.countdown")}: {mm}:{ss}
+                    </div>
+                    <button className="btn btn-ghost btn-sm" style={{marginTop:14}}
+                      onClick={()=>copy(WALLETS[net].addr,"addr")}>
+                      {copied==="addr" ? t("common.copied") : t("co.copy")}
+                    </button>
+                  </div>
+                  <div style={{display:"flex", justifyContent:"center"}}>
+                    <img src={QR(WALLETS[net].addr)} alt="QR" width="200" height="200"
+                      style={{borderRadius:12, border:"1px solid var(--line)", background:"#fff", padding:6}} />
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {method==="sepa" && (
+              <div className="card flat pad">
+                <div className="mono dim" style={{fontSize:12.5}}>{t("co.iban")}</div>
+                <div className="mono" style={{fontSize:18, fontWeight:700, color:"var(--au)", marginTop:8}}>{money(total)}</div>
+              </div>
+            )}
+
+            {method==="amazon" && (
+              <div className="card flat pad">
+                <label>{t("co.amazonPh")}</label>
+                <input value={amazon} maxLength={15} inputMode="numeric"
+                  onChange={e=>setAmazon(e.target.value.replace(/\D/g,""))} placeholder="000000000000000"/>
+                <div className="mono dim2" style={{fontSize:11, marginTop:12}}>{money(total)}</div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {step===3 && order && (
+          <div style={{display:"flex", flexDirection:"column", gap:16}}>
+            <div className="card pad">
+              <div className="eyebrow" style={{color:"var(--tl)", marginBottom:10}}>{t("co.reg")}</div>
+              <div className="mono dim2" style={{fontSize:10.5}}>{t("co.order")}</div>
+              <div className="mono" style={{fontSize:24, fontWeight:700, color:"var(--au)", wordBreak:"break-all"}}>{order.code}</div>
+              <button className="btn btn-ghost btn-sm" style={{marginTop:16}} onClick={()=>copy(order.code,"code")}>
+                {copied==="code" ? t("common.copied") : t("co.copy")}
+              </button>
+            </div>
+
+            <div className="card pad" style={{borderColor:"rgba(255,92,92,.42)", background:"#140b10"}}>
+              <div className="mono" style={{fontSize:13, fontWeight:700, color:"var(--rs)", marginBottom:10}}>{t("co.red.title")}</div>
+              <p className="dim" style={{fontSize:13, marginBottom:18}}>{t("co.red.text")}</p>
+              <a className="btn btn-gold" href={TG} target="_blank" rel="noopener noreferrer">{t("cash.tgBtn")}</a>
+            </div>
+
+            <button className="btn btn-ghost" onClick={()=>go("/track")} style={{alignSelf:"flex-start"}}>{t("nav.track")}</button>
+          </div>
+        )}
+
+        {step<3 && (
+          <div className="between" style={{marginTop:26}}>
+            <button className="btn btn-ghost" disabled={step===0} onClick={()=>setStep(s=>Math.max(0,s-1))}>{t("co.back")}</button>
+            {step<2
+              ? <button className="btn btn-gold" disabled={!canNext()} onClick={()=>setStep(s=>s+1)}>{t("co.next")}</button>
+              : <button className="btn btn-gold" onClick={confirm}>{t("co.done")}</button>}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ================= MOUNT ================= */
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>
